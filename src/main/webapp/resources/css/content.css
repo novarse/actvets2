@@ -1,0 +1,46 @@
+.content {
+	width: 100%;
+}
+
+.contentheader {
+	background-color: #E5ECF9;
+	color: #333333;
+	border: 1px solid #C1CFDD;
+	font-size: 0.5em;
+	font-weight: bold;
+	width: 100%;
+	height: 24px;
+}
+
+.btnimage {
+	position: relative;
+	top: -4px;
+}
+
+#banner {
+	border-style: none;
+}
+
+.headerText {
+	font-family: Verdana;
+	margin-top: 3px;
+	float: left;
+	font-size: 2.0em;
+	font-weight: bold;
+}
+
+.contentBody {
+	background-color: #f8f8ff;
+	padding: 5px;
+}
+
+.button {
+	float: left;
+	margin: 5px;
+	padding: 1px;
+	width: 8px;
+	height: 8px;
+	border: 1px black solid;
+	background-color: white;
+} 
+
