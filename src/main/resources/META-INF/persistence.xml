@@ -4,6 +4,7 @@
   <persistence-unit name="actvets" transaction-type="JTA">
      
     <jta-data-source>jdbc/actvets</jta-data-source>
+    <mapping-file>META-INF/orm.xml</mapping-file>
 
    <properties>
       <property name="eclipselink.logging.parameters" value="true"/>
