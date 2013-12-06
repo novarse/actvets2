@@ -1,0 +1,19 @@
+.adminSection {
+	margin: 5px 0 5px 0;
+	background-color: #ffffee;
+	width: 100%;
+}
+
+.adminHeader {
+	background-color: #ffffaa;
+	color: #333333;
+	border: 1px solid yellow;
+	font-size: 0.5em;
+	font-weight: bold;
+	width: 100%;
+	height: 24px;
+}
+
+.adminContent {
+	padding: 5px;
+}

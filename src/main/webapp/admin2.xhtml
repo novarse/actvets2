@@ -1,0 +1,15 @@
+<!DOCTYPE HTML>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+<h:body>
+			<h:commandButton image="#{resource['images/minus.png']}"
+				styleClass="button" rendered="#{adminBean.n}"
+				title="Show Less" actionListener="#{adminBean.don}" />
+			<h:commandButton image="#{resource['images/plus.png']}"
+				styleClass="button" rendered="#{adminBean.n}"
+				title="Show More" actionListener="#{adminBean.don}" />
+
+</h:body>
+</html>

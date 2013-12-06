@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 
 import org.smwillsdev.actvets.dataaccess.AdminDao;
 import org.smwillsdev.actvets.domain.Admin;
+import org.smwillsdev.actvets.domain.EventDesc;
 
 @Stateless
 public class AdminService {
@@ -13,8 +14,11 @@ public class AdminService {
 	private AdminDao dao;
 
 	public Admin saveAdmin(Admin admin) {
-		System.out.println("saveAdmin");
 		return dao.save(admin);
+	}
+
+	public EventDesc saveDesc(EventDesc desc) {
+		return dao.save(desc);
 	}
 
 }

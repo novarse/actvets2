@@ -4,15 +4,16 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-	<ui:composition template="./WEB-INF/templates/template2.xhtml" >
+	<ui:composition template="./WEB-INF/templates/template.xhtml" >
 		<ui:define name="content">
 			<ui:decorate template="./WEB-INF/templates/contentTemplate.xhtml">
 				<ui:param name="headerText" value="Future Events" />
-				<ui:param name="closeTitle" value="Logout" />
+				<ui:param name="blockId" value="futureEvents" />
+
 			</ui:decorate>
 			<ui:decorate template="./WEB-INF/templates/contentTemplate.xhtml">
 				<ui:param name="headerText" value="Historic Events" />
-				<ui:param name="closeTitle" value="Logout" />
+				<ui:param name="blockId" value="historicEvents" />
 			</ui:decorate>
 		</ui:define>
 	</ui:composition>

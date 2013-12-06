@@ -11,6 +11,12 @@ import javax.inject.Named;
 @SessionScoped
 public class CommonBean implements Serializable {
 
+	private static final String HOME = "home";
+
+	private static final String HISTORIC_EVENTS = "historicEvents";
+
+	private static final String FUTURE_EVENTS = "futureEvents";
+
 	private static final String ADMIN_REGISTER_XHTML = "/adminRegister.xhtml";
 
 	private static final String ADMIN_LOGIN_XHTML = "/adminLogin.xhtml";
@@ -20,6 +26,10 @@ public class CommonBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private String currentPage;
+
+	private boolean futureEventsExpanded;
+
+	private boolean historicEventsExpanded;
 
 	public void pageLoad() throws IOException {
 		if (!FacesContext.getCurrentInstance().isPostback()) {
@@ -47,18 +57,51 @@ public class CommonBean implements Serializable {
 		this.currentPage = currentPage;
 	}
 
-	public boolean isShowShrink() {
-		return false;
+	public boolean showShrink(String blockId) {
+		if (FUTURE_EVENTS.equals(blockId)) {
+			return futureEventsExpanded;
+		} else if (HISTORIC_EVENTS.equals(blockId)) {
+			return historicEventsExpanded;
+		} else {
+			return false;
+		}
 	}
 
-	public boolean isShowExpand() {
-		return false;
+	public boolean showExpand(String blockId) {
+		if (FUTURE_EVENTS.equals(blockId)) {
+			return !futureEventsExpanded;
+		} else if (HISTORIC_EVENTS.equals(blockId)) {
+			return !historicEventsExpanded;
+		} else {
+			return false;
+		}
 	}
 
 	public boolean isShowClose() {
 		return ADMIN_XHTML.equals(currentPage)
 				|| ADMIN_REGISTER_XHTML.equals(currentPage)
 				|| ADMIN_LOGIN_XHTML.equals(currentPage);
+	}
+
+	public void doExpand(String blockId) {
+		if (FUTURE_EVENTS.equals(blockId)) {
+			futureEventsExpanded = true;
+		} else if (HISTORIC_EVENTS.equals(blockId)) {
+			historicEventsExpanded = true;
+		}
+	}
+
+	public String doClose(String blockId) {
+		return HOME;
+	}
+
+	public void doShrink(String blockId) {
+		if (FUTURE_EVENTS.equals(blockId)) {
+			futureEventsExpanded = false;
+		} else if (HISTORIC_EVENTS.equals(blockId)) {
+			historicEventsExpanded = false;
+		}
+
 	}
 
 }

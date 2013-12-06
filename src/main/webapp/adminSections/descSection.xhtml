@@ -1,0 +1,25 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
+		<ui:param name="sectionTitle" value="Description" />
+		<ui:param name="blockId" value="descSection" />
+
+		<h:panelGrid columns="2">
+			<h:outputLabel value="Description"/>
+			<h:inputTextarea value="#{adminBean.desc.description}" cols="60" rows="5"/>
+			
+			<h:outputLabel value="Short Distance"/>
+			<h:inputText value="#{adminBean.desc.distShort}"/>
+
+			<h:outputLabel value="Long Distance"/>
+			<h:inputText value="#{adminBean.desc.distLong}"/>
+			
+			<h:outputLabel value="Is Active"/>
+			<h:selectBooleanCheckbox value="#{adminBean.desc.active}"/>
+		</h:panelGrid>
+	</ui:decorate>
+
+</ui:composition>

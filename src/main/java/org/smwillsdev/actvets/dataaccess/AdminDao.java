@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
 import org.smwillsdev.actvets.domain.Admin;
+import org.smwillsdev.actvets.domain.EventDesc;
 
 @Stateless
 @Local
@@ -15,7 +16,10 @@ public class AdminDao {
 	EntityManager em;
 
 	public Admin save(Admin admin) {
-		System.out.println("admindao save");
 		return em.merge(admin);
+	}
+
+	public EventDesc save(EventDesc desc) {
+		return em.merge(desc);
 	}
 }

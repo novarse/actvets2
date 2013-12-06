@@ -4,11 +4,28 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core">
 <h:body>
-	<ui:composition template="./WEB-INF/templates/template2.xhtml" >
+	<ui:composition template="./WEB-INF/templates/template.xhtml">
 		<ui:define name="content">
 			<ui:decorate template="./WEB-INF/templates/contentTemplate.xhtml">
 				<ui:param name="headerText" value="Admin" />
+				<ui:param name="showClose" value="true" />
 				<ui:param name="closeTitle" value="Logout" />
+
+				<ui:decorate
+					template="./adminSections/eventSection.xhtml"/>
+
+				<ui:decorate
+					template="./adminSections/descSection.xhtml"/>
+
+				<ui:decorate
+					template="./adminSections/typeSection.xhtml"/>
+
+				<ui:decorate
+					template="./adminSections/locationSection.xhtml"/>
+
+				<ui:decorate
+					template="./adminSections/seasonSection.xhtml"/>
+
 			</ui:decorate>
 		</ui:define>
 	</ui:composition>

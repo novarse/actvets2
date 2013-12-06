@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Lob;
 import javax.persistence.TableGenerator;
 
 @Entity
@@ -18,4 +19,44 @@ public class EventDesc implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "Id_Gen")
 	private long id;
 
+	@Lob
+	private String description;
+
+	private Float distShort;
+
+	private Float distLong;
+
+	private boolean active;
+
+	public Float getDistShort() {
+		return distShort;
+	}
+
+	public void setDistShort(Float distShort) {
+		this.distShort = distShort;
+	}
+
+	public Float getDistLong() {
+		return distLong;
+	}
+
+	public void setDistLong(Float distLong) {
+		this.distLong = distLong;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
 }
