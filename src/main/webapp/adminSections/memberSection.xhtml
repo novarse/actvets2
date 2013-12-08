@@ -23,7 +23,8 @@
 
 			<h:outputLabel value="Sub Grade" />
 			<h:selectOneMenu value="#{adminBean.member.subGrade}">
-				<f:selectItem itemLabel="-Select a Sub Grade-" noSelectionOption="true" />
+				<f:selectItem itemLabel="-Select a Sub Grade-"
+					noSelectionOption="true" />
 				<f:selectItem itemValue="1" />
 				<f:selectItem itemValue="2" />
 				<f:selectItem itemValue="3" />
@@ -31,24 +32,6 @@
 
 			<h:outputLabel value="Criterium Grade" />
 			<h:inputText value="#{adminBean.member.criteriumGrade}" />
-
-			<h:outputLabel value="Street" />
-			<h:inputText value="#{adminBean.member.address.street}" />
-
-			<h:outputLabel value="Suburb" />
-			<h:inputText value="#{adminBean.member.address.suburb}" />
-
-			<h:outputLabel value="City" />
-			<h:inputText value="#{adminBean.member.address.city}" />
-
-			<h:outputLabel value="State" />
-			<h:selectOneMenu value="#{adminBean.member.address.state}">
-				<f:selectItem itemLabel="-Select State-" noSelectionOption="true" />
-				<f:selectItems value="#{auStateList.states}" />
-			</h:selectOneMenu>
-
-			<h:outputLabel value="Postcode" />
-			<h:inputText value="#{adminBean.member.address.postcode}" />
 
 			<h:outputLabel value="Phone Home" />
 			<h:inputText value="#{adminBean.member.phoneHome}" />
@@ -63,12 +46,8 @@
 			<h:inputText value="#{adminBean.member.dateOfBirth}" />
 
 			<h:outputLabel value="Gender" />
-			<h:selectOneMenu value="#{adminBean.member.gender}">
-				<f:selectItem itemValue="-Select a Gender-" noSelectionOption="true" />
-				<f:selectItem itemValue="F" />
-				<f:selectItem itemValue="M" />
-			</h:selectOneMenu>
-
+			<h:inputText value="#{adminBean.member.gender}"/>
+			
 			<h:outputLabel value="First Aid" />
 			<h:selectBooleanCheckbox value="#{adminBean.member.firstAid}" />
 
@@ -85,6 +64,9 @@
 
 			<h:outputLabel value="Is Director" />
 			<h:selectBooleanCheckbox value="#{adminBean.member.raceDirector}" />
+
+			<h:outputLabel value="Is Active"/>
+			<h:selectBooleanCheckbox value="#{adminBean.location.active}"/>
 
 		</h:panelGrid>
 

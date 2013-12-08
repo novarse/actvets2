@@ -18,6 +18,9 @@
 				<f:selectItems value="#{adminBean.seasonOrder}"/>
 			</h:selectOneMenu>
 
+			<h:outputLabel value="Is Active"/>
+			<h:selectBooleanCheckbox value="#{adminBean.season.active}"/>
+
 		</h:panelGrid>
 
 	</ui:decorate>

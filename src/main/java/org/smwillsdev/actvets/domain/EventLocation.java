@@ -35,6 +35,10 @@ public class EventLocation implements Serializable {
 	// used to display in drop down lists
 	private boolean active;
 
+	public EventLocation() {
+		active = true;
+	}
+
 	public String getTitle() {
 		return title;
 	}

@@ -83,6 +83,8 @@ public class AdminBean implements Serializable {
 
 	private List<Member> memberList;
 
+	private List<Member> directorList;
+
 	public String getFullName() {
 		return fullName;
 	}
@@ -322,6 +324,7 @@ public class AdminBean implements Serializable {
 		service.saveMember(member);
 		member = null;
 		memberList = null;
+		directorList = null;
 	}
 
 	public List<Integer> getSeasonOrder() {
@@ -347,6 +350,11 @@ public class AdminBean implements Serializable {
 	public List<EventSeason> getSeasonList() {
 		seasonList = service.getSeasonList(seasonList);
 		return seasonList;
+	}
+
+	public List<Member> getDirectorList() {
+		directorList = service.getDirectorList(directorList);
+		return directorList;
 	}
 
 	public List<Member> getMemberList() {

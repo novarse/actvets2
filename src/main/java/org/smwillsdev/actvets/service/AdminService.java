@@ -78,4 +78,11 @@ public class AdminService {
 		return memberList;
 	}
 
+	public List<Member> getDirectorList(List<Member> directorList) {
+		if (directorList == null) {
+			directorList = dao.getMemberList();
+		}
+		return directorList;
+	}
+
 }

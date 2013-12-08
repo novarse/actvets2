@@ -39,4 +39,10 @@
 		</query>
 	</named-query>
 
+	<named-query name="getAllDirectors">
+		<query>
+			select d from Member d where d.raceDirector = true
+		</query>
+	</named-query>
+
 </entity-mappings>

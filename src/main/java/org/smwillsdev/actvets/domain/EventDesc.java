@@ -30,6 +30,10 @@ public class EventDesc implements Serializable {
 	// used to display in drop down lists
 	private boolean active;
 
+	public EventDesc() {
+		active = true;
+	}
+
 	public Float getDistShort() {
 		return distShort;
 	}

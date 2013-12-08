@@ -28,6 +28,11 @@
 				<f:selectItems value="#{adminBean.seasonList}" var="season" itemLabel="#{season.title}"/>
 			</h:selectOneMenu>
 			
+			<h:outputLabel value="Director"/>
+			<h:selectOneMenu >
+				<f:selectItems value="#{adminBean.directorList}" var="director" itemLabel="#{director.firstName}"/>
+			</h:selectOneMenu>
+			
 		</h:panelGrid>
 
 	</ui:decorate>

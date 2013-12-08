@@ -17,6 +17,7 @@ import org.smwillsdev.actvets.domain.Member;
 @Local
 public class AdminDao {
 
+	private static final String GET_ALL_DIRECTORS = "getAllDirectors";
 	private static final String GET_ALL_MEMBERS = "getAllMembers";
 	private static final String GET_ALL_SEASONS = "getAllSeasons";
 	private static final String GET_ALL_LOCATIONS = "getAllLocations";
@@ -50,7 +51,7 @@ public class AdminDao {
 	}
 
 	public List<Member> getMemberList() {
-		return em.createNamedQuery(GET_ALL_MEMBERS, Member.class)
+		return em.createNamedQuery(GET_ALL_DIRECTORS, Member.class)
 				.getResultList();
 	}
 

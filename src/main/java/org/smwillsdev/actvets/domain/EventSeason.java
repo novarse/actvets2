@@ -25,6 +25,10 @@ public class EventSeason implements Serializable {
 	// used to display in drop down lists
 	private boolean active;
 
+	public EventSeason() {
+		active = true;
+	}
+
 	public int getListOrder() {
 		return listOrder;
 	}

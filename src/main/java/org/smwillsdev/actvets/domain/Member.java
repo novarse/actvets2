@@ -60,7 +60,11 @@ public class Member implements Serializable {
 
 	private boolean raceDirector;
 
-	private boolean isActive;
+	private boolean active;
+
+	public Member() {
+		active = true;
+	}
 
 	public String getLastName() {
 		return lastName;
@@ -169,14 +173,6 @@ public class Member implements Serializable {
 		this.phoneEmergencyContact2 = phoneEmergencyContact2;
 	}
 
-	public boolean isActive() {
-		return isActive;
-	}
-
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
-	}
-
 	public boolean isRaceDirector() {
 		return raceDirector;
 	}
@@ -207,6 +203,14 @@ public class Member implements Serializable {
 
 	public void setSubGrade(Integer subGrade) {
 		this.subGrade = subGrade;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 
 }

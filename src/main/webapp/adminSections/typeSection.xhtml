@@ -10,6 +10,10 @@
 		<h:panelGrid columns="2" columnClasses="width90">
 			<h:outputLabel value="Event Type"/>
 			<h:inputText value="#{adminBean.eventType.title}" />
+
+			<h:outputLabel value="Is Active"/>
+			<h:selectBooleanCheckbox value="#{adminBean.eventType.active}"/>
+
 		</h:panelGrid>
 
 	</ui:decorate>
