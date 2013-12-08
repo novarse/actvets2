@@ -148,3 +148,14 @@ html>body #smallText {
 	text-decoration: underline;
 }
 
+.width90 {
+	width: 90px;
+}
+
+.width120 {
+	width: 120px;
+}
+
+.width150 {
+	width: 150px;
+}

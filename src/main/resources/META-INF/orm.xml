@@ -9,5 +9,34 @@
 		</query>
 	</named-query>
 
+	<named-query name="getAllDescriptions">
+		<query>
+			select d from EventDesc d
+		</query>
+	</named-query>
+
+	<named-query name="getAllEventTypes">
+		<query>
+			select t from EventType t
+		</query>
+	</named-query>
+
+	<named-query name="getAllLocations">
+		<query>
+			select l from EventLocation l
+		</query>
+	</named-query>
+
+	<named-query name="getAllSeasons">
+		<query>
+			select s from EventSeason s
+		</query>
+	</named-query>
+
+	<named-query name="getAllMembers">
+		<query>
+			select m from Member m
+		</query>
+	</named-query>
 
 </entity-mappings>

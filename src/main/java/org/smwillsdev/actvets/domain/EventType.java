@@ -18,4 +18,14 @@ public class EventType implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "Id_Gen")
 	private long id;
 
+	private String title;
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
 }

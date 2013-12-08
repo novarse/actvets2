@@ -18,4 +18,34 @@ public class EventSeason implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "Id_Gen")
 	private long id;
 
+	private String title;
+
+	private int listOrder;
+
+	// used to display in drop down lists
+	private boolean active;
+
+	public int getListOrder() {
+		return listOrder;
+	}
+
+	public void setListOrder(int listOrder) {
+		this.listOrder = listOrder;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
 }

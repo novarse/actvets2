@@ -6,7 +6,31 @@
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Location" />
 		<ui:param name="blockId" value="locationSection" />
-gffffffff
+
+		<h:panelGrid columns="2" columnClasses="width90">
+			<h:outputLabel value="Location"/>
+			<h:inputText value="#{adminBean.location.title}" />
+
+			<h:outputLabel value="State"/>
+			<h:selectOneMenu value="#{adminBean.location.state}">
+				<f:selectItem itemLabel="-Select State-" noSelectionOption="true"/>
+				<f:selectItems value="#{auStateList.states}"/>
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Directions"/>
+			<h:inputTextarea value="#{adminBean.location.directions}" cols="60" rows="5"/>
+			
+			<h:outputLabel value="Latitude"/>
+			<h:inputText value="#{adminBean.location.latitude}"/>
+			
+			<h:outputLabel value="Longitude"/>
+			<h:inputText value="#{adminBean.location.longitude}"/>
+			
+			<h:outputLabel value="Is Active"/>
+			<h:selectBooleanCheckbox value="#{adminBean.location.active}"/>
+
+		</h:panelGrid>
+
 	</ui:decorate>
 
 </ui:composition>

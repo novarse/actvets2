@@ -15,16 +15,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<!-- Just temporary - should be removed once the javaee7-api will be released 
-		to the maven central repository -->
-	<repositories>
-		<repository>
-			<id>maven.java.net</id>
-			<url>https://maven.java.net/content/groups/promoted/</url>
-		</repository>
-
-	</repositories>
-
 	<dependencies>
 		<dependency>
 			<groupId>javax</groupId>
@@ -63,6 +53,7 @@
 				<version>2.6</version>
 			</plugin>
 		</plugins>
+		<finalName>actvets</finalName>
 	</build>
 
 </project>

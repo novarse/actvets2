@@ -6,7 +6,20 @@
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Season" />
 		<ui:param name="blockId" value="seasonSection" />
-gffffffff
+
+		<h:panelGrid columns="2" columnClasses="width90">
+			<h:outputLabel value="Season" />
+			<h:inputText value="#{adminBean.season.title}" />
+
+			<h:outputLabel value="List Order"
+				title="This deterimines the order of the seasons shown in drop-down lists" />
+			<h:selectOneMenu value="#{adminBean.season.listOrder}"
+				title="This deterimines the order of the seasons shown in drop-down lists">
+				<f:selectItems value="#{adminBean.seasonOrder}"/>
+			</h:selectOneMenu>
+
+		</h:panelGrid>
+
 	</ui:decorate>
 
 </ui:composition>

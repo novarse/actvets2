@@ -6,7 +6,30 @@
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Event" />
 		<ui:param name="blockId" value="eventSection" />
-gffffffff
+
+		<h:panelGrid columns="2" columnClasses="width90">
+			<h:outputLabel value="Description"/>
+			<h:selectOneMenu >
+				<f:selectItems value="#{adminBean.descList}" var="desc" itemLabel="#{desc.title}"/>
+			</h:selectOneMenu>
+			
+			<h:outputLabel value="Event Type"/>
+			<h:selectOneMenu >
+				<f:selectItems value="#{adminBean.eventTypeList}" var="type" itemLabel="#{type.title}"/>
+			</h:selectOneMenu>
+			
+			<h:outputLabel value="Location"/>
+			<h:selectOneMenu >
+				<f:selectItems value="#{adminBean.locationList}" var="location" itemLabel="#{location.title}"/>
+			</h:selectOneMenu>
+			
+			<h:outputLabel value="Season"/>
+			<h:selectOneMenu >
+				<f:selectItems value="#{adminBean.seasonList}" var="season" itemLabel="#{season.title}"/>
+			</h:selectOneMenu>
+			
+		</h:panelGrid>
+
 	</ui:decorate>
 
 </ui:composition>

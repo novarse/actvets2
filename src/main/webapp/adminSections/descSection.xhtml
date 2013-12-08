@@ -7,7 +7,11 @@
 		<ui:param name="sectionTitle" value="Description" />
 		<ui:param name="blockId" value="descSection" />
 
-		<h:panelGrid columns="2">
+		<h:panelGrid columns="2" columnClasses="width90">
+
+			<h:outputLabel value="Title"/>
+			<h:inputText value="#{adminBean.desc.title}"/>
+
 			<h:outputLabel value="Description"/>
 			<h:inputTextarea value="#{adminBean.desc.description}" cols="60" rows="5"/>
 			
@@ -19,6 +23,7 @@
 			
 			<h:outputLabel value="Is Active"/>
 			<h:selectBooleanCheckbox value="#{adminBean.desc.active}"/>
+
 		</h:panelGrid>
 	</ui:decorate>
 

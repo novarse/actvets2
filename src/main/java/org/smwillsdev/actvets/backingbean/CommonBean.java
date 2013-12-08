@@ -33,7 +33,6 @@ public class CommonBean implements Serializable {
 
 	public void pageLoad() throws IOException {
 		if (!FacesContext.getCurrentInstance().isPostback()) {
-
 			setCurrentPage(getPageName());
 
 		}

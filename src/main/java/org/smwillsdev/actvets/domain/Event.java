@@ -1,12 +1,16 @@
 package org.smwillsdev.actvets.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 @Entity
 public class Event implements Serializable {
@@ -18,13 +22,26 @@ public class Event implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "Id_Gen")
 	private long id;
 
-	private String name;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date date;
 
-	public String getName() {
-		return name;
+	@ManyToOne
+	private EventDesc description;
+
+	public Date getDate() {
+		return date;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setDate(Date date) {
+		this.date = date;
 	}
+
+	public EventDesc getDescription() {
+		return description;
+	}
+
+	public void setDescription(EventDesc description) {
+		this.description = description;
+	}
+
 }

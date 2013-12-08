@@ -29,16 +29,50 @@ public class Member implements Serializable {
 
 	private String firstName;
 
-	private String surname;
-
-	@Temporal(TemporalType.DATE)
-	private Date dateOfBirth;
+	private String lastName;
 
 	@Enumerated(EnumType.STRING)
 	private Gender gender;
 
 	@OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
 	private Address address;
+
+	private String email;
+
+	private String phoneHome;
+
+	private String phoneWorkOrMobile;
+
+	private int raceNumber;
+
+	private String grade;
+
+	private int subGrade;
+
+	private String criteriumGrade;
+
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
+
+	private boolean firstAid;
+
+	private String emergencyContact;
+
+	private String phoneEmergencyContact;
+
+	private String phoneEmergencyContact2;
+
+	private boolean raceDirector;
+
+	private boolean isActive;
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public void setLastName(String lastName) {
+		this.lastName = lastName;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -48,12 +82,135 @@ public class Member implements Serializable {
 		this.firstName = firstName;
 	}
 
-	public String getSurname() {
-		return surname;
+	public Gender getGender() {
+		return gender;
 	}
 
-	public void setSurname(String surname) {
-		this.surname = surname;
+	public void setGender(Gender gender) {
+		this.gender = gender;
+	}
+
+	public Address getAddress() {
+		if (address == null) {
+			address = new Address();
+		}
+		return address;
+	}
+
+	public void setAddress(Address address) {
+		this.address = address;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getPhoneHome() {
+		return phoneHome;
+	}
+
+	public void setPhoneHome(String phoneHome) {
+		this.phoneHome = phoneHome;
+	}
+
+	public String getPhoneWorkOrMobile() {
+		return phoneWorkOrMobile;
+	}
+
+	public void setPhoneWorkOrMobile(String phoneWorkOrMobile) {
+		this.phoneWorkOrMobile = phoneWorkOrMobile;
+	}
+
+	public String getGrade() {
+		return grade;
+	}
+
+	public void setGrade(String grade) {
+		this.grade = grade;
+	}
+
+	public int getSubGrade() {
+		return subGrade;
+	}
+
+	public void setSubGrade(int subGrade) {
+		this.subGrade = subGrade;
+	}
+
+	public String getCriteriumGrade() {
+		return criteriumGrade;
+	}
+
+	public void setCriteriumGrade(String criteriumGrade) {
+		this.criteriumGrade = criteriumGrade;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public boolean isFirstAid() {
+		return firstAid;
+	}
+
+	public void setFirstAid(boolean firstAid) {
+		this.firstAid = firstAid;
+	}
+
+	public String getEmergencyContact() {
+		return emergencyContact;
+	}
+
+	public void setEmergencyContact(String emergencyContact) {
+		this.emergencyContact = emergencyContact;
+	}
+
+	public String getPhoneEmergencyContact() {
+		return phoneEmergencyContact;
+	}
+
+	public void setPhoneEmergencyContact(String phoneEmergencyContact) {
+		this.phoneEmergencyContact = phoneEmergencyContact;
+	}
+
+	public String getPhoneEmergencyContact2() {
+		return phoneEmergencyContact2;
+	}
+
+	public void setPhoneEmergencyContact2(String phoneEmergencyContact2) {
+		this.phoneEmergencyContact2 = phoneEmergencyContact2;
+	}
+
+	public boolean isActive() {
+		return isActive;
+	}
+
+	public void setActive(boolean isActive) {
+		this.isActive = isActive;
+	}
+
+	public int getRaceNumber() {
+		return raceNumber;
+	}
+
+	public void setRaceNumber(int raceNumber) {
+		this.raceNumber = raceNumber;
+	}
+
+	public boolean isRaceDirector() {
+		return raceDirector;
+	}
+
+	public void setRaceDirector(boolean raceDirector) {
+		this.raceDirector = raceDirector;
 	}
 
 }

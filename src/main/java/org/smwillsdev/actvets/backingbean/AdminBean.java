@@ -1,22 +1,28 @@
 package org.smwillsdev.actvets.backingbean;
 
 import java.io.Serializable;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.smwillsdev.actvets.domain.Admin;
+import org.smwillsdev.actvets.domain.Event;
 import org.smwillsdev.actvets.domain.EventDesc;
 import org.smwillsdev.actvets.domain.EventLocation;
 import org.smwillsdev.actvets.domain.EventSeason;
 import org.smwillsdev.actvets.domain.EventType;
+import org.smwillsdev.actvets.domain.Member;
 import org.smwillsdev.actvets.domain.SysVars;
 import org.smwillsdev.actvets.service.AdminService;
 
 @Named
 @SessionScoped
 public class AdminBean implements Serializable {
+
+	private static final String MEMBER_SECTION = "memberSection";
 
 	private static final String TYPE_SECTION = "typeSection";
 
@@ -35,6 +41,8 @@ public class AdminBean implements Serializable {
 
 	private SysVars sysVars;
 
+	private Event event;
+
 	private EventDesc desc;
 
 	private EventType eventType;
@@ -42,6 +50,8 @@ public class AdminBean implements Serializable {
 	private EventSeason season;
 
 	private EventLocation location;
+
+	private Member member;
 
 	private String email;
 
@@ -60,6 +70,18 @@ public class AdminBean implements Serializable {
 	private boolean seasonShown;
 
 	private boolean typeShown;
+
+	private boolean memberShown;
+
+	private List<EventDesc> descList;
+
+	private List<EventType> typeList;
+
+	private List<EventLocation> locationList;
+
+	private List<EventSeason> seasonList;
+
+	private List<Member> memberList;
 
 	public String getFullName() {
 		return fullName;
@@ -116,6 +138,8 @@ public class AdminBean implements Serializable {
 			seasonShown = true;
 		} else if (LOCATION_SECTION.equals(blockId)) {
 			locationShown = true;
+		} else if (MEMBER_SECTION.equals(blockId)) {
+			memberShown = true;
 		}
 	}
 
@@ -130,6 +154,8 @@ public class AdminBean implements Serializable {
 			seasonShown = false;
 		} else if (LOCATION_SECTION.equals(blockId)) {
 			locationShown = false;
+		} else if (MEMBER_SECTION.equals(blockId)) {
+			memberShown = false;
 		}
 	}
 
@@ -144,6 +170,8 @@ public class AdminBean implements Serializable {
 			return seasonShown;
 		} else if (LOCATION_SECTION.equals(blockId)) {
 			return locationShown;
+		} else if (MEMBER_SECTION.equals(blockId)) {
+			return memberShown;
 		} else {
 			return false;
 		}
@@ -160,6 +188,8 @@ public class AdminBean implements Serializable {
 			return !seasonShown;
 		} else if (LOCATION_SECTION.equals(blockId)) {
 			return !locationShown;
+		} else if (MEMBER_SECTION.equals(blockId)) {
+			return !memberShown;
 		} else {
 			return false;
 		}
@@ -174,6 +204,17 @@ public class AdminBean implements Serializable {
 
 	public void setSysVars(SysVars sysVars) {
 		this.sysVars = sysVars;
+	}
+
+	public Event getEvent() {
+		if (event == null) {
+			event = new Event();
+		}
+		return event;
+	}
+
+	public void setEvent(Event event) {
+		this.event = event;
 	}
 
 	public EventDesc getDesc() {
@@ -220,6 +261,17 @@ public class AdminBean implements Serializable {
 		this.location = location;
 	}
 
+	public Member getMember() {
+		if (member == null) {
+			member = new Member();
+		}
+		return member;
+	}
+
+	public void setMember(Member member) {
+		this.member = member;
+	}
+
 	public String saveSection(String blockId) {
 		if (EVENT_SECTION.equals(blockId)) {
 			saveEvent();
@@ -231,6 +283,8 @@ public class AdminBean implements Serializable {
 			saveSeason();
 		} else if (LOCATION_SECTION.equals(blockId)) {
 			saveLocation();
+		} else if (MEMBER_SECTION.equals(blockId)) {
+			saveMember();
 		}
 		return "";
 	}
@@ -241,21 +295,63 @@ public class AdminBean implements Serializable {
 	}
 
 	private void saveDesc() {
-		desc = service.saveDesc(desc);
+		service.saveDesc(desc);
+		desc = null;
+		descList = null;
 	}
 
 	private void saveType() {
-		// TODO Auto-generated method stub
-
-	}
-
-	private void saveSeason() {
-		// TODO Auto-generated method stub
-
+		service.saveType(eventType);
+		eventType = null;
+		typeList = null;
 	}
 
 	private void saveLocation() {
-		// TODO Auto-generated method stub
-
+		service.saveLocation(location);
+		location = null;
+		locationList = null;
 	}
+
+	private void saveSeason() {
+		service.saveSeason(season);
+		season = null;
+		seasonList = null;
+	}
+
+	private void saveMember() {
+		service.saveMember(member);
+		member = null;
+		memberList = null;
+	}
+
+	public List<Integer> getSeasonOrder() {
+		return Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
+				15, 16, 17, 19, 20);
+	}
+
+	public List<EventDesc> getDescList() {
+		descList = service.getDescList(descList);
+		return descList;
+	}
+
+	public List<EventType> getEventTypeList() {
+		typeList = service.getTypeList(typeList);
+		return typeList;
+	}
+
+	public List<EventLocation> getLocationList() {
+		locationList = service.getLocationList(locationList);
+		return locationList;
+	}
+
+	public List<EventSeason> getSeasonList() {
+		seasonList = service.getSeasonList(seasonList);
+		return seasonList;
+	}
+
+	public List<Member> getMemberList() {
+		memberList = service.getMemberList(memberList);
+		return memberList;
+	}
+
 }

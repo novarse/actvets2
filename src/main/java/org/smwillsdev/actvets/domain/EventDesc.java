@@ -19,6 +19,7 @@ public class EventDesc implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "Id_Gen")
 	private long id;
 
+	private String title;
 	@Lob
 	private String description;
 
@@ -26,6 +27,7 @@ public class EventDesc implements Serializable {
 
 	private Float distLong;
 
+	// used to display in drop down lists
 	private boolean active;
 
 	public Float getDistShort() {
@@ -58,5 +60,17 @@ public class EventDesc implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
 	}
 }

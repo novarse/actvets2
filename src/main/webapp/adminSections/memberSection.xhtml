@@ -1,0 +1,90 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:ace="http://www.icefaces.org/icefaces/components">
+
+	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
+		<ui:param name="sectionTitle" value="Member" />
+		<ui:param name="blockId" value="memberSection" />
+
+		<h:panelGrid columns="2" columnClasses="width90">
+			<h:outputLabel value="First Name" />
+			<h:inputText value="#{adminBean.member.firstName}" />
+
+			<h:outputLabel value="Last Name" />
+			<h:inputText value="#{adminBean.member.lastName}" />
+
+			<h:outputLabel value="Race Number" />
+			<h:inputText value="#{adminBean.member.raceNumber}" />
+
+			<h:outputLabel value="Grade" />
+			<h:inputText value="#{adminBean.member.grade}" />
+
+			<h:outputLabel value="Sub Grade" />
+			<h:selectOneMenu value="#{adminBean.member.subGrade}">
+				<f:selectItem itemLabel="-Select a Sub Grade-" noSelectionOption="true" />
+				<f:selectItem itemValue="1" />
+				<f:selectItem itemValue="2" />
+				<f:selectItem itemValue="3" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Criterium Grade" />
+			<h:inputText value="#{adminBean.member.criteriumGrade}" />
+
+			<h:outputLabel value="Street" />
+			<h:inputText value="#{adminBean.member.address.street}" />
+
+			<h:outputLabel value="Suburb" />
+			<h:inputText value="#{adminBean.member.address.suburb}" />
+
+			<h:outputLabel value="City" />
+			<h:inputText value="#{adminBean.member.address.city}" />
+
+			<h:outputLabel value="State" />
+			<h:selectOneMenu value="#{adminBean.member.address.state}">
+				<f:selectItem itemLabel="-Select State-" noSelectionOption="true" />
+				<f:selectItems value="#{auStateList.states}" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="Postcode" />
+			<h:inputText value="#{adminBean.member.address.postcode}" />
+
+			<h:outputLabel value="Phone Home" />
+			<h:inputText value="#{adminBean.member.phoneHome}" />
+
+			<h:outputLabel value="Mobile / Work" />
+			<h:inputText value="#{adminBean.member.phoneWorkOrMobile}" />
+
+			<h:outputLabel value="Email" />
+			<h:inputText value="#{adminBean.member.email}" />
+
+			<h:outputLabel value="Gender" />
+			<h:selectOneMenu value="#{adminBean.member.gender}">
+				<f:selectItem itemValue="-Select a Gender-" noSelectionOption="true" />
+				<f:selectItem itemValue="F" />
+				<f:selectItem itemValue="M" />
+			</h:selectOneMenu>
+
+			<h:outputLabel value="First Aid" />
+			<h:selectBooleanCheckbox value="#{adminBean.member.firstAid}" />
+
+			<h:outputLabel value="Emergency Contact" />
+			<h:inputText value="#{adminBean.member.emergencyContact}" />
+
+			<h:outputLabel value="Em Cont Ph 1" title="Emergency Contact Phone 1" />
+			<h:inputText value="#{adminBean.member.phoneEmergencyContact}"
+				title="Emergency Contact Phone 1" />
+
+			<h:outputLabel value="Em Cont Ph 2" title="Emergency Contact Phone 2" />
+			<h:inputText value="#{adminBean.member.phoneEmergencyContact2}"
+				title="Emergency Contact Phone 2" />
+
+			<h:outputLabel value="Is Director" />
+			<h:selectBooleanCheckbox value="#{adminBean.member.raceDirector}" />
+
+		</h:panelGrid>
+
+	</ui:decorate>
+
+</ui:composition>

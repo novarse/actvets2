@@ -6,7 +6,12 @@
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Event Type" />
 		<ui:param name="blockId" value="typeSection" />
-gffffffff
+
+		<h:panelGrid columns="2" columnClasses="width90">
+			<h:outputLabel value="Event Type"/>
+			<h:inputText value="#{adminBean.eventType.title}" />
+		</h:panelGrid>
+
 	</ui:decorate>
 
 </ui:composition>
