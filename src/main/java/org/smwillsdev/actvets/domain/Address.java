@@ -28,7 +28,7 @@ public class Address implements Serializable {
 
 	private AuState state;
 
-	private int postcode;
+	private Integer postcode;
 
 	public String getSuburb() {
 		return suburb;
@@ -46,14 +46,6 @@ public class Address implements Serializable {
 		this.city = city;
 	}
 
-	public int getPostcode() {
-		return postcode;
-	}
-
-	public void setPostcode(int postcode) {
-		this.postcode = postcode;
-	}
-
 	public AuState getState() {
 		return state;
 	}
@@ -68,6 +60,14 @@ public class Address implements Serializable {
 
 	public void setStreet(String street) {
 		this.street = street;
+	}
+
+	public Integer getPostcode() {
+		return postcode;
+	}
+
+	public void setPostcode(Integer postcode) {
+		this.postcode = postcode;
 	}
 
 }

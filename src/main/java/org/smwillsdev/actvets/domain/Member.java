@@ -1,7 +1,6 @@
 package org.smwillsdev.actvets.domain;
 
 import java.io.Serializable;
-import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -12,8 +11,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 import org.smwillsdev.actvets.type.Gender;
 
@@ -43,16 +40,15 @@ public class Member implements Serializable {
 
 	private String phoneWorkOrMobile;
 
-	private int raceNumber;
+	private Integer raceNumber;
 
 	private String grade;
 
-	private int subGrade;
+	private Integer subGrade;
 
 	private String criteriumGrade;
 
-	@Temporal(TemporalType.DATE)
-	private Date dateOfBirth;
+	private String dateOfBirth;
 
 	private boolean firstAid;
 
@@ -133,28 +129,12 @@ public class Member implements Serializable {
 		this.grade = grade;
 	}
 
-	public int getSubGrade() {
-		return subGrade;
-	}
-
-	public void setSubGrade(int subGrade) {
-		this.subGrade = subGrade;
-	}
-
 	public String getCriteriumGrade() {
 		return criteriumGrade;
 	}
 
 	public void setCriteriumGrade(String criteriumGrade) {
 		this.criteriumGrade = criteriumGrade;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
 	}
 
 	public boolean isFirstAid() {
@@ -197,20 +177,36 @@ public class Member implements Serializable {
 		this.isActive = isActive;
 	}
 
-	public int getRaceNumber() {
-		return raceNumber;
-	}
-
-	public void setRaceNumber(int raceNumber) {
-		this.raceNumber = raceNumber;
-	}
-
 	public boolean isRaceDirector() {
 		return raceDirector;
 	}
 
 	public void setRaceDirector(boolean raceDirector) {
 		this.raceDirector = raceDirector;
+	}
+
+	public String getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(String dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
+	}
+
+	public Integer getRaceNumber() {
+		return raceNumber;
+	}
+
+	public void setRaceNumber(Integer raceNumber) {
+		this.raceNumber = raceNumber;
+	}
+
+	public Integer getSubGrade() {
+		return subGrade;
+	}
+
+	public void setSubGrade(Integer subGrade) {
+		this.subGrade = subGrade;
 	}
 
 }
