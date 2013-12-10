@@ -2,7 +2,8 @@
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
-	xmlns:ace="http://www.icefaces.org/icefaces/components">
+	xmlns:ace="http://www.icefaces.org/icefaces/components"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Member" />
@@ -23,7 +24,7 @@
 
 			<h:outputLabel value="Sub Grade" />
 			<h:selectOneMenu value="#{adminBean.member.subGrade}">
-				<f:selectItem itemLabel="-Select a Sub Grade-"
+				<f:selectItem itemLabel="-Select a sub grade-"
 					noSelectionOption="true" />
 				<f:selectItem itemValue="1" />
 				<f:selectItem itemValue="2" />
@@ -43,7 +44,7 @@
 			<h:inputText value="#{adminBean.member.email}" />
 
 			<h:outputLabel value="Date of Birth" />
-			<h:inputText value="#{adminBean.member.dateOfBirth}" />
+			<p:calendar value="#{adminBean.member.dateOfBirth}" pattern="dd/MM/yyyy" styleClass="pfDate" />
 
 			<h:outputLabel value="Gender" />
 			<h:inputText value="#{adminBean.member.gender}"/>

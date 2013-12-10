@@ -30,6 +30,17 @@ public class EventDesc implements Serializable {
 	// used to display in drop down lists
 	private boolean active;
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && obj instanceof EventDesc && title != null
+				&& title.equals(((EventDesc) obj).title);
+	}
+
+	@Override
+	public int hashCode() {
+		return title.hashCode();
+	}
+
 	public EventDesc() {
 		active = true;
 	}
@@ -77,4 +88,5 @@ public class EventDesc implements Serializable {
 	public void setTitle(String title) {
 		this.title = title;
 	}
+
 }

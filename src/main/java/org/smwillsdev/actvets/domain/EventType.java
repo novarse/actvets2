@@ -26,6 +26,17 @@ public class EventType implements Serializable {
 		active = true;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && obj instanceof EventType && title != null
+				&& title.equals(((EventType) obj).title);
+	}
+
+	@Override
+	public int hashCode() {
+		return title.hashCode();
+	}
+
 	public String getTitle() {
 		return title;
 	}

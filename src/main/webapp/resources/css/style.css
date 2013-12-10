@@ -159,3 +159,9 @@ html>body #smallText {
 .width150 {
 	width: 150px;
 }
+
+.pfDate {
+	font-family: helvetica;
+	margin: 0;
+	font-size: 0.9em;
+}

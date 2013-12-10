@@ -15,6 +15,12 @@
 		</query>
 	</named-query>
 
+	<named-query name="getActiveDescriptions">
+		<query>
+			select d from EventDesc d where d.active = true
+		</query>
+	</named-query>
+
 	<named-query name="getAllEventTypes">
 		<query>
 			select t from EventType t
@@ -41,7 +47,7 @@
 
 	<named-query name="getAllDirectors">
 		<query>
-			select d from Member d where d.raceDirector = true
+			select d from Member d where d.raceDirector = true order by d.lastName, d.firstName
 		</query>
 	</named-query>
 

@@ -1,6 +1,7 @@
 package org.smwillsdev.actvets.domain;
 
 import java.io.Serializable;
+import java.util.Date;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
@@ -11,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.TableGenerator;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 
 import org.smwillsdev.actvets.type.Gender;
 
@@ -48,7 +51,8 @@ public class Member implements Serializable {
 
 	private String criteriumGrade;
 
-	private String dateOfBirth;
+	@Temporal(TemporalType.DATE)
+	private Date dateOfBirth;
 
 	private boolean firstAid;
 
@@ -64,6 +68,11 @@ public class Member implements Serializable {
 
 	public Member() {
 		active = true;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		return this.id == ((Member) obj).id;
 	}
 
 	public String getLastName() {
@@ -181,14 +190,6 @@ public class Member implements Serializable {
 		this.raceDirector = raceDirector;
 	}
 
-	public String getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(String dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
 	public Integer getRaceNumber() {
 		return raceNumber;
 	}
@@ -211,6 +212,14 @@ public class Member implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public Date getDateOfBirth() {
+		return dateOfBirth;
+	}
+
+	public void setDateOfBirth(Date dateOfBirth) {
+		this.dateOfBirth = dateOfBirth;
 	}
 
 }

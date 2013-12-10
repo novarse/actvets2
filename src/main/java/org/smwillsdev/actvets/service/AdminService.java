@@ -7,6 +7,7 @@ import javax.ejb.Stateless;
 
 import org.smwillsdev.actvets.dataaccess.AdminDao;
 import org.smwillsdev.actvets.domain.Admin;
+import org.smwillsdev.actvets.domain.Event;
 import org.smwillsdev.actvets.domain.EventDesc;
 import org.smwillsdev.actvets.domain.EventLocation;
 import org.smwillsdev.actvets.domain.EventSeason;
@@ -21,6 +22,10 @@ public class AdminService {
 
 	public Admin saveAdmin(Admin admin) {
 		return dao.save(admin, Admin.class);
+	}
+
+	public Event saveEvent(Event event) {
+		return dao.save(event, Event.class);
 	}
 
 	public EventDesc saveDesc(EventDesc desc) {

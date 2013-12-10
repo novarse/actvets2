@@ -26,7 +26,19 @@ public class Event implements Serializable {
 	private Date date;
 
 	@ManyToOne
-	private EventDesc description;
+	private EventDesc eventDesc;
+
+	@ManyToOne
+	private EventType eventType;
+
+	@ManyToOne
+	private EventLocation eventLocation;
+
+	@ManyToOne
+	private EventSeason eventSeason;
+
+	@ManyToOne
+	private Member director;
 
 	public Date getDate() {
 		return date;
@@ -36,12 +48,44 @@ public class Event implements Serializable {
 		this.date = date;
 	}
 
-	public EventDesc getDescription() {
-		return description;
+	public EventDesc getEventDesc() {
+		return eventDesc;
 	}
 
-	public void setDescription(EventDesc description) {
-		this.description = description;
+	public void setEventDesc(EventDesc eventDesc) {
+		this.eventDesc = eventDesc;
+	}
+
+	public EventType getEventType() {
+		return eventType;
+	}
+
+	public void setEventType(EventType eventType) {
+		this.eventType = eventType;
+	}
+
+	public EventLocation getEventLocation() {
+		return eventLocation;
+	}
+
+	public void setEventLocation(EventLocation eventLocation) {
+		this.eventLocation = eventLocation;
+	}
+
+	public EventSeason getEventSeason() {
+		return eventSeason;
+	}
+
+	public void setEventSeason(EventSeason eventSeason) {
+		this.eventSeason = eventSeason;
+	}
+
+	public Member getDirector() {
+		return director;
+	}
+
+	public void setDirector(Member director) {
+		this.director = director;
 	}
 
 }

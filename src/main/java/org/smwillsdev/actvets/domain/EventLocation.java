@@ -39,6 +39,17 @@ public class EventLocation implements Serializable {
 		active = true;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && obj instanceof EventLocation && title != null
+				&& title.equals(((EventLocation) obj).title);
+	}
+
+	@Override
+	public int hashCode() {
+		return title.hashCode();
+	}
+
 	public String getTitle() {
 		return title;
 	}

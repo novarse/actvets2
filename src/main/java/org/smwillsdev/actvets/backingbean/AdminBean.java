@@ -53,6 +53,8 @@ public class AdminBean implements Serializable {
 
 	private Member member;
 
+	private Member director;
+
 	private String email;
 
 	private String fullName;
@@ -110,7 +112,6 @@ public class AdminBean implements Serializable {
 	}
 
 	public String register() {
-		System.out.println("register");
 		Admin admin = new Admin();
 
 		admin.setEmail(email);
@@ -274,6 +275,17 @@ public class AdminBean implements Serializable {
 		this.member = member;
 	}
 
+	public Member getDirector() {
+		if (director == null) {
+			director = new Member();
+		}
+		return director;
+	}
+
+	public void setDirector(Member director) {
+		this.director = director;
+	}
+
 	public String saveSection(String blockId) {
 		if (EVENT_SECTION.equals(blockId)) {
 			saveEvent();
@@ -292,8 +304,8 @@ public class AdminBean implements Serializable {
 	}
 
 	private void saveEvent() {
-		// TODO Auto-generated method stub
-
+		service.saveEvent(event);
+		event = null;
 	}
 
 	private void saveDesc() {
@@ -337,7 +349,7 @@ public class AdminBean implements Serializable {
 		return descList;
 	}
 
-	public List<EventType> getEventTypeList() {
+	public List<EventType> getTypeList() {
 		typeList = service.getTypeList(typeList);
 		return typeList;
 	}

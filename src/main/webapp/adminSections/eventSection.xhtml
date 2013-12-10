@@ -1,38 +1,63 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Event" />
 		<ui:param name="blockId" value="eventSection" />
 
 		<h:panelGrid columns="2" columnClasses="width90">
-			<h:outputLabel value="Description"/>
-			<h:selectOneMenu >
-				<f:selectItems value="#{adminBean.descList}" var="desc" itemLabel="#{desc.title}"/>
+
+			<h:outputLabel value="Date" />
+			<p:calendar value="#{adminBean.event.date}" pattern="dd/MM/yyyy HH:mm" styleClass="pfDate"/>
+
+			<h:outputLabel value="Description" />
+			<h:selectOneMenu value="#{adminBean.event.eventDesc}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="-Select a description-"
+					noSelectionOption="true" />
+				<f:selectItems value="#{adminBean.descList}" var="desc"
+					itemLabel="#{desc.title}" />
 			</h:selectOneMenu>
-			
-			<h:outputLabel value="Event Type"/>
-			<h:selectOneMenu >
-				<f:selectItems value="#{adminBean.eventTypeList}" var="type" itemLabel="#{type.title}"/>
+
+			<h:outputLabel value="Event Type" />
+			<h:selectOneMenu value="#{adminBean.event.eventType}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="-Select an event type-"
+					noSelectionOption="true" />
+				<f:selectItems value="#{adminBean.typeList}" var="type"
+					itemLabel="#{type.title}" />
 			</h:selectOneMenu>
-			
-			<h:outputLabel value="Location"/>
-			<h:selectOneMenu >
-				<f:selectItems value="#{adminBean.locationList}" var="location" itemLabel="#{location.title}"/>
+
+			<h:outputLabel value="Event Location" />
+			<h:selectOneMenu value="#{adminBean.event.eventLocation}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="-Select a location-"
+					noSelectionOption="true" />
+				<f:selectItems value="#{adminBean.locationList}" var="var"
+					itemLabel="#{var.title}" />
 			</h:selectOneMenu>
-			
-			<h:outputLabel value="Season"/>
-			<h:selectOneMenu >
-				<f:selectItems value="#{adminBean.seasonList}" var="season" itemLabel="#{season.title}"/>
+
+			<h:outputLabel value="Event Season" />
+			<h:selectOneMenu value="#{adminBean.event.eventSeason}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="-Select a season-"
+					noSelectionOption="true" />
+				<f:selectItems value="#{adminBean.seasonList}" var="var"
+					itemLabel="#{var.title}" />
 			</h:selectOneMenu>
-			
-			<h:outputLabel value="Director"/>
-			<h:selectOneMenu >
-				<f:selectItems value="#{adminBean.directorList}" var="director" itemLabel="#{director.firstName}"/>
+
+			<h:outputLabel value="Director" />
+			<h:selectOneMenu value="#{adminBean.event.director}"
+				converter="omnifaces.SelectItemsConverter">
+				<f:selectItem itemLabel="-Select a director-"
+					noSelectionOption="true" />
+				<f:selectItems value="#{adminBean.directorList}" var="var"
+					itemLabel="#{var.lastName}, #{var.firstName}" />
 			</h:selectOneMenu>
-			
+
 		</h:panelGrid>
 
 	</ui:decorate>

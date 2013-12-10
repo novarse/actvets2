@@ -29,6 +29,17 @@ public class EventSeason implements Serializable {
 		active = true;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		return obj != null && obj instanceof EventSeason && title != null
+				&& title.equals(((EventSeason) obj).title);
+	}
+
+	@Override
+	public int hashCode() {
+		return title.hashCode();
+	}
+
 	public int getListOrder() {
 		return listOrder;
 	}
