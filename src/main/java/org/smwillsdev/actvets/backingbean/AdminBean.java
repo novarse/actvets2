@@ -8,6 +8,8 @@ import javax.ejb.EJB;
 import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.UploadedFile;
 import org.smwillsdev.actvets.domain.Admin;
 import org.smwillsdev.actvets.domain.Event;
 import org.smwillsdev.actvets.domain.EventDesc;
@@ -17,22 +19,13 @@ import org.smwillsdev.actvets.domain.EventType;
 import org.smwillsdev.actvets.domain.Member;
 import org.smwillsdev.actvets.domain.SysVars;
 import org.smwillsdev.actvets.service.AdminService;
+import org.smwillsdev.actvets.util.Constants;
+import org.smwillsdev.actvets.util.Utils;
+import org.smwillsdev.actvets.view.util.FacesUtils;
 
 @Named
 @SessionScoped
 public class AdminBean implements Serializable {
-
-	private static final String MEMBER_SECTION = "memberSection";
-
-	private static final String TYPE_SECTION = "typeSection";
-
-	private static final String SEASON_SECTION = "seasonSection";
-
-	private static final String LOCATION_SECTION = "locationSection";
-
-	private static final String DESC_SECTION = "descSection";
-
-	private static final String EVENT_SECTION = "eventSection";
 
 	private static final long serialVersionUID = 1L;
 
@@ -75,6 +68,18 @@ public class AdminBean implements Serializable {
 
 	private boolean memberShown;
 
+	private boolean loadEventShown;
+
+	private boolean loadDescShown;
+
+	private boolean loadLocationShown;
+
+	private boolean loadSeasonShown;
+
+	private boolean loadTypeShown;
+
+	private boolean loadMemberShown;
+
 	private List<EventDesc> descList;
 
 	private List<EventType> typeList;
@@ -86,6 +91,10 @@ public class AdminBean implements Serializable {
 	private List<Member> memberList;
 
 	private List<Member> directorList;
+
+	private boolean loadDataShown;
+
+	private UploadedFile file;
 
 	public String getFullName() {
 		return fullName;
@@ -131,70 +140,154 @@ public class AdminBean implements Serializable {
 	}
 
 	public void doShow(String blockId) {
-		if (EVENT_SECTION.equals(blockId)) {
+		if (Constants.EVENT.equals(blockId)) {
 			eventShown = true;
-		} else if (DESC_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_DESC.equals(blockId)) {
 			descShown = true;
-		} else if (TYPE_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_TYPE.equals(blockId)) {
 			typeShown = true;
-		} else if (SEASON_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_SEASON.equals(blockId)) {
 			seasonShown = true;
-		} else if (LOCATION_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_LOCATION.equals(blockId)) {
 			locationShown = true;
-		} else if (MEMBER_SECTION.equals(blockId)) {
+		} else if (Constants.MEMBER.equals(blockId)) {
 			memberShown = true;
+		} else if (Constants.LOAD_DATA_SECTION.equals(blockId)) {
+			loadDataShown = true;
+		} else if (Constants.LOAD_EVENT.equals(blockId)) {
+			loadEventShown = true;
+		} else if (Constants.LOAD_EVENT_DESC.equals(blockId)) {
+			loadDescShown = true;
+		} else if (Constants.LOAD_EVENT_TYPE.equals(blockId)) {
+			loadTypeShown = true;
+		} else if (Constants.LOAD_EVENT_SEASON.equals(blockId)) {
+			loadSeasonShown = true;
+		} else if (Constants.LOAD_EVENT_LOCATION.equals(blockId)) {
+			loadLocationShown = true;
+		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
+			loadMemberShown = true;
 		}
 	}
 
 	public void doHide(String blockId) {
-		if (EVENT_SECTION.equals(blockId)) {
+		if (Constants.EVENT.equals(blockId)) {
 			eventShown = false;
-		} else if (DESC_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_DESC.equals(blockId)) {
 			descShown = false;
-		} else if (TYPE_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_TYPE.equals(blockId)) {
 			typeShown = false;
-		} else if (SEASON_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_SEASON.equals(blockId)) {
 			seasonShown = false;
-		} else if (LOCATION_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_LOCATION.equals(blockId)) {
 			locationShown = false;
-		} else if (MEMBER_SECTION.equals(blockId)) {
+		} else if (Constants.MEMBER.equals(blockId)) {
 			memberShown = false;
+		} else if (Constants.LOAD_DATA_SECTION.equals(blockId)) {
+			loadDataShown = false;
+		} else if (Constants.LOAD_DATA_SECTION.equals(blockId)) {
+			loadDataShown = false;
+		} else if (Constants.LOAD_EVENT.equals(blockId)) {
+			loadEventShown = false;
+		} else if (Constants.LOAD_EVENT_DESC.equals(blockId)) {
+			loadDescShown = false;
+		} else if (Constants.LOAD_EVENT_TYPE.equals(blockId)) {
+			loadTypeShown = false;
+		} else if (Constants.LOAD_EVENT_SEASON.equals(blockId)) {
+			loadSeasonShown = false;
+		} else if (Constants.LOAD_EVENT_LOCATION.equals(blockId)) {
+			loadLocationShown = false;
+		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
+			loadMemberShown = false;
 		}
 	}
 
 	public boolean showHide(String blockId) {
-		if (EVENT_SECTION.equals(blockId)) {
+		if (Constants.EVENT.equals(blockId)) {
 			return eventShown;
-		} else if (DESC_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_DESC.equals(blockId)) {
 			return descShown;
-		} else if (TYPE_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_TYPE.equals(blockId)) {
 			return typeShown;
-		} else if (SEASON_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_SEASON.equals(blockId)) {
 			return seasonShown;
-		} else if (LOCATION_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_LOCATION.equals(blockId)) {
 			return locationShown;
-		} else if (MEMBER_SECTION.equals(blockId)) {
+		} else if (Constants.MEMBER.equals(blockId)) {
 			return memberShown;
+		} else if (Constants.LOAD_DATA_SECTION.equals(blockId)) {
+			return loadDataShown;
+		} else if (Constants.LOAD_EVENT.equals(blockId)) {
+			return loadEventShown;
+		} else if (Constants.LOAD_EVENT_DESC.equals(blockId)) {
+			return loadDescShown;
+		} else if (Constants.LOAD_EVENT_TYPE.equals(blockId)) {
+			return loadTypeShown;
+		} else if (Constants.LOAD_EVENT_SEASON.equals(blockId)) {
+			return loadSeasonShown;
+		} else if (Constants.LOAD_EVENT_LOCATION.equals(blockId)) {
+			return loadLocationShown;
+		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
+			return loadMemberShown;
 		} else {
 			return false;
 		}
 	}
 
 	public boolean showShow(String blockId) {
-		if (EVENT_SECTION.equals(blockId)) {
+		if (Constants.EVENT.equals(blockId)) {
 			return !eventShown;
-		} else if (DESC_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_DESC.equals(blockId)) {
 			return !descShown;
-		} else if (TYPE_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_TYPE.equals(blockId)) {
 			return !typeShown;
-		} else if (SEASON_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_SEASON.equals(blockId)) {
 			return !seasonShown;
-		} else if (LOCATION_SECTION.equals(blockId)) {
+		} else if (Constants.EVENT_LOCATION.equals(blockId)) {
 			return !locationShown;
-		} else if (MEMBER_SECTION.equals(blockId)) {
+		} else if (Constants.MEMBER.equals(blockId)) {
 			return !memberShown;
+		} else if (Constants.LOAD_DATA_SECTION.equals(blockId)) {
+			return !loadDataShown;
+		} else if (Constants.LOAD_EVENT.equals(blockId)) {
+			return !loadEventShown;
+		} else if (Constants.LOAD_EVENT_DESC.equals(blockId)) {
+			return !loadDescShown;
+		} else if (Constants.LOAD_EVENT_TYPE.equals(blockId)) {
+			return !loadTypeShown;
+		} else if (Constants.LOAD_EVENT_SEASON.equals(blockId)) {
+			return !loadSeasonShown;
+		} else if (Constants.LOAD_EVENT_LOCATION.equals(blockId)) {
+			return !loadLocationShown;
+		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
+			return !loadMemberShown;
 		} else {
 			return false;
+		}
+	}
+
+	public String saveSection(String blockId) {
+		if (Constants.EVENT.equals(blockId)) {
+			saveEvent();
+		} else if (Constants.EVENT_DESC.equals(blockId)) {
+			saveDesc();
+		} else if (Constants.EVENT_TYPE.equals(blockId)) {
+			saveType();
+		} else if (Constants.EVENT_SEASON.equals(blockId)) {
+			saveSeason();
+		} else if (Constants.EVENT_LOCATION.equals(blockId)) {
+			saveLocation();
+		} else if (Constants.MEMBER.equals(blockId)) {
+			saveMember();
+		}
+		FacesUtils.popupMessage("Saved");
+		return "";
+	}
+
+	public boolean showSaveButton(String blockId) {
+		if (Constants.LOAD_DATA_SECTION.equals(blockId)) {
+			return false;
+		} else {
+			return true;
 		}
 	}
 
@@ -286,23 +379,6 @@ public class AdminBean implements Serializable {
 		this.director = director;
 	}
 
-	public String saveSection(String blockId) {
-		if (EVENT_SECTION.equals(blockId)) {
-			saveEvent();
-		} else if (DESC_SECTION.equals(blockId)) {
-			saveDesc();
-		} else if (TYPE_SECTION.equals(blockId)) {
-			saveType();
-		} else if (SEASON_SECTION.equals(blockId)) {
-			saveSeason();
-		} else if (LOCATION_SECTION.equals(blockId)) {
-			saveLocation();
-		} else if (MEMBER_SECTION.equals(blockId)) {
-			saveMember();
-		}
-		return "";
-	}
-
 	private void saveEvent() {
 		service.saveEvent(event);
 		event = null;
@@ -374,4 +450,37 @@ public class AdminBean implements Serializable {
 		return memberList;
 	}
 
+	public void handleDescUpload(FileUploadEvent event) {
+		service.processDataLoad(event, Constants.EVENT_DESC);
+	}
+
+	public void handleTypeUpload(FileUploadEvent event) {
+		service.processDataLoad(event, Constants.EVENT_TYPE);
+	}
+
+	public void handleSeasonUpload(FileUploadEvent event) {
+		service.processDataLoad(event, Constants.EVENT_SEASON);
+	}
+
+	public void handleLocationUpload(FileUploadEvent event) {
+		service.processDataLoad(event, Constants.EVENT_LOCATION);
+	}
+
+	public void handleMemberUpload(FileUploadEvent event) {
+		service.processDataLoad(event, Constants.MEMBER);
+	}
+
+	public UploadedFile getFile() {
+		return file;
+	}
+
+	public void setFile(UploadedFile file) {
+		this.file = file;
+	}
+
+	public String getEventLine(String title, String eventType, String director,
+			String distLong, String distShort) {
+		return Utils.getEventLine(title, eventType, director, distLong,
+				distShort);
+	}
 }

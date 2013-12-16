@@ -97,4 +97,12 @@ public class EventLocation implements Serializable {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

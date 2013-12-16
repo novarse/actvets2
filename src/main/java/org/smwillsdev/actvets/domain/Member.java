@@ -222,4 +222,16 @@ public class Member implements Serializable {
 		this.dateOfBirth = dateOfBirth;
 	}
 
+	public String getFullName() {
+		return (firstName != null && !firstName.isEmpty() ? firstName + " "
+				: "") + lastName;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 }

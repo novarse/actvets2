@@ -5,12 +5,12 @@
 
 	<h:outputStylesheet library="css" name="adminSection.css" />
 
-	<h:panelGroup styleClass="adminSection">
-		<h:panelGroup styleClass="adminHeader">
-			<h:commandButton image="#{resource['images/minus.png']}"
+	<h:panelGroup styleClass="adminSection block">
+		<h:panelGroup styleClass="adminHeader block">
+			<h:commandButton image="#{resource['images/minus.png']}" immediate="true"
 				styleClass="button" rendered="#{adminBean.showHide(blockId)}"
 				title="Hide Section" actionListener="#{adminBean.doHide(blockId)}" />
-			<h:commandButton image="#{resource['images/plus.png']}"
+			<h:commandButton image="#{resource['images/plus.png']}" immediate="true"
 				styleClass="button" rendered="#{adminBean.showShow(blockId)}"
 				title="Show Section" actionListener="#{adminBean.doShow(blockId)}" />
 			<h:panelGroup styleClass="headerText">
@@ -18,11 +18,11 @@
 			</h:panelGroup>
 		</h:panelGroup>
 
-		<h:panelGroup styleClass="adminContent"
+		<h:panelGroup styleClass="adminContent block"
 			rendered="#{adminBean.showHide(blockId)}">
 			<ui:insert />
 
-			<h:panelGroup styleClass="adminSave">
+			<h:panelGroup styleClass="adminSave" rendered="#{adminBean.showSaveButton(blockId)}">
 				<h:commandButton value="Save"
 					action="#{adminBean.saveSection(blockId)}" />
 			</h:panelGroup>

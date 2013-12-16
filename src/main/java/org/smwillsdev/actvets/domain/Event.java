@@ -88,4 +88,8 @@ public class Event implements Serializable {
 		this.director = director;
 	}
 
+	public long getId() {
+		return id;
+	}
+
 }

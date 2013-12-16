@@ -27,6 +27,7 @@ public class EventSeason implements Serializable {
 
 	public EventSeason() {
 		active = true;
+		listOrder = 9999;
 	}
 
 	@Override
@@ -62,5 +63,13 @@ public class EventSeason implements Serializable {
 
 	public void setActive(boolean active) {
 		this.active = active;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
 	}
 }

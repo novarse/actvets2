@@ -11,43 +11,55 @@
 
 	<named-query name="getAllDescriptions">
 		<query>
-			select d from EventDesc d
+			select d from EventDesc d order by d.title
 		</query>
 	</named-query>
 
 	<named-query name="getActiveDescriptions">
 		<query>
-			select d from EventDesc d where d.active = true
+			select d from EventDesc d where d.active = true order by d.title
 		</query>
 	</named-query>
 
 	<named-query name="getAllEventTypes">
 		<query>
-			select t from EventType t
+			select t from EventType t order by t.title
 		</query>
 	</named-query>
 
 	<named-query name="getAllLocations">
 		<query>
-			select l from EventLocation l
+			select l from EventLocation l order by l.title
 		</query>
 	</named-query>
 
 	<named-query name="getAllSeasons">
 		<query>
-			select s from EventSeason s
+			select s from EventSeason s order by s.listOrder, s.title
 		</query>
 	</named-query>
 
 	<named-query name="getAllMembers">
 		<query>
-			select m from Member m
+			select m from Member m order by m.lastName, m.firstName
 		</query>
 	</named-query>
 
 	<named-query name="getAllDirectors">
 		<query>
 			select d from Member d where d.raceDirector = true order by d.lastName, d.firstName
+		</query>
+	</named-query>
+
+	<named-query name="getFutureEvents">
+		<query>
+			select e from Event e where e.date >= :date
+		</query>
+	</named-query>
+
+	<named-query name="getHistoricEvents">
+		<query>
+			select e from Event e where e.date >= :date
 		</query>
 	</named-query>
 

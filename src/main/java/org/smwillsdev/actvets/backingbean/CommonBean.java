@@ -7,6 +7,8 @@ import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
+import org.smwillsdev.actvets.view.util.FacesUtils;
+
 @Named
 @SessionScoped
 public class CommonBean implements Serializable {
@@ -103,4 +105,7 @@ public class CommonBean implements Serializable {
 
 	}
 
+	public void showGrowl(String msg) {
+		FacesUtils.displayMessage(msg);
+	}
 }

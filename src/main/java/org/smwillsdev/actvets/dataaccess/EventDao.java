@@ -1,5 +1,6 @@
 package org.smwillsdev.actvets.dataaccess;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.ejb.Local;
@@ -19,6 +20,22 @@ public class EventDao extends BaseDao<Event> {
 
 	public List<Event> findAll() {
 		return em.createNamedQuery("getAllEvents", Event.class).getResultList();
+	}
+
+	public List<Event> getFutureEvents() {
+		Date date = new Date();
+		return em.createNamedQuery("getFutureEvents", Event.class)
+				.setParameter("date", date).getResultList();
+	}
+
+	public List<Event> getHistoricEvents() {
+		Date date = new Date();
+		return em.createNamedQuery("getHistoricEvents", Event.class)
+				.setParameter("date", date).getResultList();
+	}
+
+	public Event getEvent(long id) {
+		return em.find(Event.class, id);
 	}
 
 }

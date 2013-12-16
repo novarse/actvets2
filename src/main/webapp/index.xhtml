@@ -10,10 +10,17 @@
 				<ui:param name="headerText" value="Future Events" />
 				<ui:param name="blockId" value="futureEvents" />
 
+				<ui:decorate
+					template="./publicSections/futureEvents.xhtml"/>
+
 			</ui:decorate>
 			<ui:decorate template="./WEB-INF/templates/contentTemplate.xhtml">
 				<ui:param name="headerText" value="Historic Events" />
 				<ui:param name="blockId" value="historicEvents" />
+
+				<ui:decorate
+					template="./publicSections/historicEvents.xhtml"/>
+
 			</ui:decorate>
 		</ui:define>
 	</ui:composition>

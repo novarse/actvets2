@@ -4,11 +4,10 @@ body {
 	font-size: 0.8em;
 }
 
-div, span, p, textarea {
+div,span,p,textarea {
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
 	-moz-box-sizing: border-box; /* Firefox, other Gecko */
 	box-sizing: border-box;
-	
 }
 
 #container {
@@ -31,7 +30,7 @@ div, span, p, textarea {
 	vertical-align: top;
 }
 
-#content span {
+.block {
 	display: block;
 }
 
@@ -139,8 +138,40 @@ html>body		#vertmenu p {
 	font-size: 0.80em;
 }
 
+.bold {
+	font-weight: bold;
+}
+
 html>body #smallText {
 	font-size: 0.75em;
+}
+
+a:link {
+	text-decoration: none;
+}
+
+a:hover {
+	background: #6699ff;
+	color: #ffffff;
+	cursor: pointer;
+	font-weight: bold;
+}
+
+.ui-growl {
+	position: fixed;
+	top: 30px;
+	left: 70%;
+	z-index: 9999;
+}
+
+.widget-wrapper {
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	background-color: #f9f9f9;
+	border: 1px solid #e5e5e5;
+	border-radius: 4px;
+	margin: 0 0 20px;
+	padding: 20px;
 }
 
 #anchor:hover {

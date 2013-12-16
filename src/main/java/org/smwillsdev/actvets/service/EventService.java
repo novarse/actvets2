@@ -27,4 +27,15 @@ public class EventService implements Serializable {
 		dao.save(event);
 	}
 
+	public List<Event> getFutureEvents() {
+		return dao.getFutureEvents();
+	}
+
+	public List<Event> getHistoricEvents() {
+		return dao.getHistoricEvents();
+	}
+
+	public Event getEvent(long id) {
+		return dao.getEvent(id);
+	}
 }

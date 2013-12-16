@@ -1,11 +1,12 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Season" />
-		<ui:param name="blockId" value="seasonSection" />
+		<ui:param name="blockId" value="eventSeason" />
 
 		<h:panelGrid columns="2" columnClasses="width90">
 			<h:outputLabel value="Season" />
@@ -20,7 +21,7 @@
 
 			<h:outputLabel value="Is Active"/>
 			<h:selectBooleanCheckbox value="#{adminBean.season.active}"/>
-
+	
 		</h:panelGrid>
 
 	</ui:decorate>

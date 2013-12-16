@@ -89,4 +89,8 @@ public class EventDesc implements Serializable {
 		this.title = title;
 	}
 
+	public void setId(long id) {
+		this.id = id;
+	}
+
 }

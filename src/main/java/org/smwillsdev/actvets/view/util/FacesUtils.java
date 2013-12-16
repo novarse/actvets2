@@ -22,10 +22,32 @@ public class FacesUtils {
 		return "#{" + value + "}";
 	}
 
-	public static void addErrorMessage(String message) {
+	public static void displayMessage(String message) {
 		FacesMessage facesMessage = new FacesMessage(message);
 		FacesContext context = FacesContext.getCurrentInstance();
-		String clientId = null;
+		String clientId = "messages";
+		context.addMessage(clientId, facesMessage);
+	}
+
+	public static void popupMessage(String message) {
+		FacesMessage facesMessage = new FacesMessage(message);
+		FacesContext context = FacesContext.getCurrentInstance();
+		String clientId = "growl";
+		context.addMessage(clientId, facesMessage);
+	}
+
+	public static void displayMessage(String clientId, String summary,
+			String detail) {
+		FacesMessage facesMessage = new FacesMessage(summary, detail);
+		FacesContext context = FacesContext.getCurrentInstance();
+		context.addMessage(clientId, facesMessage);
+	}
+
+	public static void displayError(String clientId, String summary,
+			String detail) {
+		FacesMessage facesMessage = new FacesMessage(
+				FacesMessage.SEVERITY_ERROR, summary, detail);
+		FacesContext context = FacesContext.getCurrentInstance();
 		context.addMessage(clientId, facesMessage);
 	}
 
