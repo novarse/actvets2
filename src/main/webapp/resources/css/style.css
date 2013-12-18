@@ -34,6 +34,13 @@ div,span,p,textarea {
 	display: block;
 }
 
+.ui-helper-clearfix:after {
+		border: 1px solid #000000;
+	overflow: hidden;
+	width: 100%;
+	clear:none;
+}
+
 #vertmenu {
 	vertical-align: top;
 	font-family: Verdana, Arial, Helvetica, sans-serif;

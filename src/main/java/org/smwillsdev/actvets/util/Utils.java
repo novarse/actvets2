@@ -1,11 +1,23 @@
 package org.smwillsdev.actvets.util;
 
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 import java.util.logging.Logger;
 
 import org.smwillsdev.actvets.domain.EventDesc;
 import org.smwillsdev.actvets.type.AuState;
+import org.smwillsdev.actvets.type.Gender;
 
 public class Utils {
+
+	private static final String FALSE = "false";
+
+	private static final String F = "f";
+
+	private static final String T = "t";
+
+	private static final String TRUE = "true";
 
 	private static final String _0_0 = "0.0";
 
@@ -78,5 +90,59 @@ public class Utils {
 			result.append(", Dist" + distStr + "");
 		}
 		return result.toString();
+	}
+
+	public static Integer getIntegerFromStr(String str) {
+		if (str != null && !str.isEmpty()) {
+			try {
+				int result = Integer.parseInt(str);
+				return result;
+			} catch (NumberFormatException e) {
+				log.warning("Error getting Integer from String: " + str);
+			}
+		}
+		return null;
+	}
+
+	public static Date getDDMMYYYYDateFromStr(String str) {
+		if (str != null && !str.isEmpty()) {
+			String[] parts = str.split("[/-]");
+			try {
+				Calendar cal = Calendar.getInstance(TimeZone
+						.getTimeZone(Constants.TZ_AUSTRALIA_NSW));
+				cal.set(Integer.parseInt(parts[2]),
+						Integer.parseInt(parts[1]) - 1,
+						Integer.parseInt(parts[0]));
+
+				return cal.getTime();
+			} catch (NumberFormatException e) {
+				log.warning("Error getting Date from String: " + str);
+			}
+		}
+		return null;
+	}
+
+	public static Gender getGenderFromStr(String str) {
+		if (str != null && !str.isEmpty()) {
+			if (str.matches("[mM]")) {
+				return Gender.M;
+			} else if (str.matches("[fF]")) {
+				return Gender.F;
+			}
+		}
+		return null;
+	}
+
+	public static boolean getBooleanFromStr(String str) {
+		if (str != null && !str.isEmpty()) {
+			str = str.toLowerCase();
+			if (FALSE.equals(str.toLowerCase()) || F.equals(str.toLowerCase())) {
+				return false;
+			} else if (TRUE.equals(str.toLowerCase())
+					|| T.equals(str.toLowerCase())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

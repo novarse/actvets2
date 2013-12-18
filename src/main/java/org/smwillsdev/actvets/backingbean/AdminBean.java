@@ -38,6 +38,10 @@ public class AdminBean implements Serializable {
 
 	private EventDesc desc;
 
+	private EventDesc descE;
+
+	private EventDesc descEL;
+
 	private EventType eventType;
 
 	private EventSeason season;
@@ -482,5 +486,23 @@ public class AdminBean implements Serializable {
 			String distLong, String distShort) {
 		return Utils.getEventLine(title, eventType, director, distLong,
 				distShort);
+	}
+
+	public EventDesc getDescE() {
+		return descE;
+	}
+
+	public void setDescE(EventDesc descE) {
+		System.out.println("setDescE");
+		descEL.setTitle("rrrrrrrrrrrrrrr");
+		this.descE = descE;
+	}
+
+	public EventDesc getDescEL() {
+		return descEL;
+	}
+
+	public void setDescEL(EventDesc descEL) {
+		this.descEL = descEL;
 	}
 }

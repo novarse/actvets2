@@ -21,7 +21,7 @@ public class Constants {
 	public static final String LOAD_EVENT_DESC = "loadEventDesc";
 	public static final String LOAD_EVENT = "loadEvent";
 
-	public static final String TZ_AUSTRALIA_SYDNEY = "Australia/Sydney";
+	public static final String TZ_AUSTRALIA_NSW = "Australia/NSW";
 	public static final String FUTURE_EVENT_DETAILS = "futureEventDetails";
 	public static final String E_DD_MMM_HH_MM = "E dd MMM h:mma";
 
@@ -33,7 +33,7 @@ public class Constants {
 	public static SimpleDateFormat getFormatterE_DD_MMM_HH_MM() {
 		System.out.println("fgggggggg");
 		formatterE_DD_MMM_HH_MM.setTimeZone(TimeZone
-				.getTimeZone(TZ_AUSTRALIA_SYDNEY));
+				.getTimeZone(TZ_AUSTRALIA_NSW));
 		return formatterE_DD_MMM_HH_MM;
 	}
 

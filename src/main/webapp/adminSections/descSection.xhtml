@@ -1,30 +1,72 @@
 <ui:composition xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
-	xmlns:f="http://xmlns.jcp.org/jsf/core">
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
 
 	<ui:decorate template="../WEB-INF/templates/adminSectionTemplate.xhtml">
 		<ui:param name="sectionTitle" value="Description" />
 		<ui:param name="blockId" value="eventDesc" />
 
-		<h:panelGrid columns="2" columnClasses="width90">
+		<p:tabView id="descTabView">
 
-			<h:outputLabel value="Title"/>
-			<h:inputText value="#{adminBean.desc.title}"/>
+			<p:tab id="descNewTab" title="New Description">
 
-			<h:outputLabel value="Description"/>
-			<h:inputTextarea value="#{adminBean.desc.description}" cols="60" rows="5"/>
-			
-			<h:outputLabel value="Short Distance"/>
-			<h:inputText value="#{adminBean.desc.distShort}"/>
+				<h:panelGrid columns="2" columnClasses="width90">
 
-			<h:outputLabel value="Long Distance"/>
-			<h:inputText value="#{adminBean.desc.distLong}"/>
-			
-			<h:outputLabel value="Is Active"/>
-			<h:selectBooleanCheckbox value="#{adminBean.desc.active}"/>
+					<h:outputLabel value="Title" />
+					<h:inputText value="#{adminBean.desc.title}" />
 
-		</h:panelGrid>
+					<h:outputLabel value="Description" />
+					<h:inputTextarea value="#{adminBean.desc.description}" cols="60"
+						rows="5" />
+
+					<h:outputLabel value="Short Distance" />
+					<h:inputText value="#{adminBean.desc.distShort}" />
+
+					<h:outputLabel value="Long Distance" />
+					<h:inputText value="#{adminBean.desc.distLong}" />
+
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.desc.active}" />
+
+				</h:panelGrid>
+			</p:tab>
+
+			<p:tab id="descEditTab" title="Edit Description">
+
+				<h:panelGrid columns="2" columnClasses="width90">
+
+				<h:outputLabel value="Description" />
+				<h:selectOneMenu value="#{adminBean.descE}"
+					converter="omnifaces.SelectItemsConverter">
+					<f:selectItem itemLabel="-Select a description-"
+						noSelectionOption="true" />
+					<f:selectItems value="#{adminBean.descList}" var="desc"
+						itemLabel="#{desc.title}" />
+				</h:selectOneMenu>
+title = #{adminBean.descEL.title}
+				<h:outputLabel value="Title" />
+				<h:inputText value="#{adminBean.descE.title}" />
+
+				<h:outputLabel value="Description" />
+				<h:inputTextarea value="#{adminBean.descE.description}" cols="60"
+					rows="5" />
+
+				<h:outputLabel value="Short Distance" />
+				<h:inputText value="#{adminBean.descE.distShort}" />
+
+				<h:outputLabel value="Long Distance" />
+				<h:inputText value="#{adminBean.descE.distLong}" />
+
+				<h:outputLabel value="Is Active" />
+				<h:selectBooleanCheckbox value="#{adminBean.descE.active}" />
+
+				</h:panelGrid>
+
+			</p:tab>
+		</p:tabView>
+
 	</ui:decorate>
 
 </ui:composition>

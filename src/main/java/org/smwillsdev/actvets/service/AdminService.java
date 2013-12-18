@@ -164,10 +164,41 @@ public class AdminService {
 			parts = line.split("\t");
 			Member ent = new Member();
 			ent.setId(Long.parseLong(parts[0]));
-
+			ent.setFirstName(parts[1]);
+			ent.setActive(Utils.getBooleanFromStr(parts[2]));
+			ent.getAddress().setStreet(parts[3]);
+			ent.getAddress().setSuburb(parts[4]);
+			ent.getAddress().setState(Utils.getStateFromStr(parts[5]));
+			ent.getAddress().setPostcode(Utils.getIntegerFromStr(parts[6]));
+			ent.setPhoneHome(parts[7]);
+			ent.setPhoneWorkOrMobile(parts[8]);
+			ent.setDateOfBirth(Utils.getDDMMYYYYDateFromStr(parts[9]));
+			ent.setGender(Utils.getGenderFromStr(parts[10]));
+			ent.setEmail(parts[11]);
+			ent.setFirstAid(Utils.getBooleanFromStr(parts[12]));
+			ent.setEmergencyContact(parts[13]);
+			ent.setPhoneEmergencyContact(parts[14]);
+			ent.setPhoneEmergencyContact2(parts[15]);
+			ent.setRaceNumber(Utils.getIntegerFromStr(parts[16]));
+			ent.setGrade(parts[17]);
+			ent.setSubGrade(Utils.getIntegerFromStr(parts[18]));
+			ent.setCriteriumGrade(parts[19]);
+			ent.setRaceDirector(Utils.getBooleanFromStr(parts[20]));
+			ent.setLastName(parts[22]);
 			saveMember(ent);
 		}
 	}
+
+	// return getId() + TAB + getFirstName() + TAB + isActive() + TAB
+	// + getStreet() + TAB + getSuburb() + TAB + getState() + TAB
+	// + getPostcode() + TAB + getPhoneHome() + TAB
+	// + getPhoneWorkOrMobile() + TAB
+	// + Utils.formatDateForExport(getDob()) + TAB + getGender() + TAB
+	// + getEmail() + TAB + isFirstAid() + TAB + getEmergencyContact()
+	// + TAB + getPhoneEmergencyContact() + TAB
+	// + getPhoneEmergencyContact2() + TAB + getNumber() + TAB + grade
+	// + TAB + getSubGrade() + TAB + getCriteriumGrade() + TAB
+	// + isDirector() + TAB + getAVCCNumber() + TAB + getLastName();
 
 	private void processEventSeason(BufferedReader reader) throws Exception {
 		String line = null;
@@ -225,10 +256,7 @@ public class AdminService {
 							+ ent.getId() + "): " + parts[3]);
 				}
 			}
-			if (parts[4] != null && !parts[4].isEmpty()
-					&& "false".equals(parts[4].toLowerCase())) {
-				ent.setActive(false);
-			}
+			ent.setActive(Utils.getBooleanFromStr(parts[4]));
 			saveDesc(ent);
 		}
 	}
