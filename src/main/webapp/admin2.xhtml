@@ -4,40 +4,59 @@
 	xmlns:h="http://xmlns.jcp.org/jsf/html"
 	xmlns:f="http://xmlns.jcp.org/jsf/core"
 	xmlns:p="http://primefaces.org/ui">
+<h:head></h:head>
 <h:body>
-	<ui:composition template="./WEB-INF/templates/template.xhtml">
-		<ui:define name="content">
 
-				<p:panel id="pnl" header="About Barca" toggleable="true"
-					closable="true" toggleSpeed="500" closeSpeed="500"
-					widgetVar="panel">
+			<h:form>
+				<p>
+					<b>Last selected item:</b>
+					<h:outputText id="selected_item"
+						value="#{selectItemsBean.selectedEntity.value}" />
+				</p>
 
-					<p:ajax event="close" listener="#{panelBean.handleClose}"
-						update="growl" />
-					<p:ajax event="toggle" listener="#{panelBean.handleToggle}"
-						update="growl" />
+				<h:panelGrid columns="2">
+					<h:outputLabel for="iterator" value="Items with iterator: " />
+					<h:selectOneMenu id="iterator"
+						value="#{selectItemsBean.selectedEntity}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
+						<f:selectItems value="#{selectItemsBean.exampleEntities}"
+							var="entity" itemLabel="#{entity.value}" itemValue="#{entity}" />
+						<f:ajax render="selected_item" />
+					</h:selectOneMenu>
 
-					<h:outputText
-						value="FC Barcelona is one of only three clubs never to have been relegated from La Liga and is the most successful club in Spanish football along with Real Madrid,
-                having won twenty La Liga titles, a record twenty-five Spanish Cups, eight Spanish Super Cups, four Eva Duarte Cups and two League Cups.
-                They are also one of the most successful clubs  in European football having won fourteen official major trophies in total,
-                including ten UEFA competitions. They have won three UEFA Champions League titles, a record four UEFA Cup Winners' Cups,
-                a record three InterCities Fairs Cups (the forerunner to the UEFA Europa League), three UEFA Super Cups and one FIFA Club World Cup.
-                The club is also the only European side to have played continental football in every season since its inception in 1955." />
+					<h:outputLabel for="iterator_def_value"
+						value="Items with iterator (default value): " />
+					<h:selectOneMenu id="iterator_def_value"
+						value="#{selectItemsBean.selectedEntity}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
+						<f:selectItems value="#{selectItemsBean.exampleEntities}"
+							var="entity" itemLabel="#{entity.value}" />
+						<f:ajax render="selected_item" />
+					</h:selectOneMenu>
 
-					<f:facet name="options">
-						<p:menu>
-							<p:submenu label="Settings">
-								<p:menuitem value="Toggle" url="#" icon="ui-icon-newwin"
-									onclick="panel.toggle()" />
-								<p:menuitem value="Remove" url="#" icon="ui-icon-close"
-									onclick="panel.close()" />
-							</p:submenu>
-						</p:menu>
-					</f:facet>
-				</p:panel>
+					<h:outputLabel for="selectitems"
+						value="Items with SelectItem list: " />
+					<h:selectOneMenu id="selectitems"
+						value="#{selectItemsBean.selectedEntity}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
+						<f:selectItems value="#{selectItemsBean.selectItems}" />
+						<f:ajax render="selected_item" />
+					</h:selectOneMenu>
 
-		</ui:define>
-	</ui:composition>
+					<h:outputLabel for="selectitems_array"
+						value="Items with SelectItem array: " />
+					<h:selectOneMenu id="selectitems_array"
+						value="#{selectItemsBean.selectedEntity}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
+						<f:selectItems value="#{selectItemsBean.selectItemArray}" />
+						<f:ajax render="selected_item" />
+					</h:selectOneMenu>
+				</h:panelGrid>
+			</h:form>
+
 </h:body>
 </html>

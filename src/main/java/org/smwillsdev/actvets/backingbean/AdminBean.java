@@ -9,7 +9,6 @@ import javax.enterprise.context.SessionScoped;
 import javax.inject.Named;
 
 import org.primefaces.event.FileUploadEvent;
-import org.primefaces.model.UploadedFile;
 import org.smwillsdev.actvets.domain.Admin;
 import org.smwillsdev.actvets.domain.Event;
 import org.smwillsdev.actvets.domain.EventDesc;
@@ -38,6 +37,7 @@ public class AdminBean implements Serializable {
 
 	private EventDesc desc;
 
+	// used for the admin "Edit" object
 	private EventDesc descE;
 
 	private EventDesc descEL;
@@ -97,8 +97,6 @@ public class AdminBean implements Serializable {
 	private List<Member> directorList;
 
 	private boolean loadDataShown;
-
-	private UploadedFile file;
 
 	public String getFullName() {
 		return fullName;
@@ -237,6 +235,12 @@ public class AdminBean implements Serializable {
 		}
 	}
 
+	/**
+	 * Used to show the "Show / Expand button"
+	 * 
+	 * @param blockId
+	 * @return
+	 */
 	public boolean showShow(String blockId) {
 		if (Constants.EVENT.equals(blockId)) {
 			return !eventShown;
@@ -270,6 +274,24 @@ public class AdminBean implements Serializable {
 	}
 
 	public String saveSection(String blockId) {
+		if (Constants.EVENT.equals(blockId)) {
+			saveEvent();
+		} else if (Constants.EVENT_DESC.equals(blockId)) {
+			saveDesc(false);
+		} else if (Constants.EVENT_TYPE.equals(blockId)) {
+			saveType();
+		} else if (Constants.EVENT_SEASON.equals(blockId)) {
+			saveSeason();
+		} else if (Constants.EVENT_LOCATION.equals(blockId)) {
+			saveLocation();
+		} else if (Constants.MEMBER.equals(blockId)) {
+			saveMember();
+		}
+		FacesUtils.popupMessage("Saved");
+		return "";
+	}
+
+	public String saveEdit(String blockId) {
 		if (Constants.EVENT.equals(blockId)) {
 			saveEvent();
 		} else if (Constants.EVENT_DESC.equals(blockId)) {
@@ -388,10 +410,25 @@ public class AdminBean implements Serializable {
 		event = null;
 	}
 
-	private void saveDesc() {
-		service.saveDesc(desc);
-		desc = null;
-		descList = null;
+	/**
+	 * Default is to save the edited description as opposed to a new description
+	 */
+	private String saveDesc() {
+		return saveDesc(true);
+	}
+
+	/**
+	 * Default is to save the edited description as opposed to a new description
+	 */
+	private String saveDesc(boolean isEdit) {
+		if (isEdit) {
+			descE = service.saveDesc(descE);
+		} else {
+			service.saveDesc(desc);
+			desc = null;
+			descList = null;
+		}
+		return "";
 	}
 
 	private void saveType() {
@@ -474,14 +511,6 @@ public class AdminBean implements Serializable {
 		service.processDataLoad(event, Constants.MEMBER);
 	}
 
-	public UploadedFile getFile() {
-		return file;
-	}
-
-	public void setFile(UploadedFile file) {
-		this.file = file;
-	}
-
 	public String getEventLine(String title, String eventType, String director,
 			String distLong, String distShort) {
 		return Utils.getEventLine(title, eventType, director, distLong,
@@ -489,12 +518,13 @@ public class AdminBean implements Serializable {
 	}
 
 	public EventDesc getDescE() {
+		if (descE == null) {
+			descE = new EventDesc();
+		}
 		return descE;
 	}
 
 	public void setDescE(EventDesc descE) {
-		System.out.println("setDescE");
-		descEL.setTitle("rrrrrrrrrrrrrrr");
 		this.descE = descE;
 	}
 
@@ -505,4 +535,5 @@ public class AdminBean implements Serializable {
 	public void setDescEL(EventDesc descEL) {
 		this.descEL = descEL;
 	}
+
 }

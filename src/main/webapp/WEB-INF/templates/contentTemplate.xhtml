@@ -5,25 +5,26 @@
 	xmlns:p="http://primefaces.org/ui">
 
 	<h:outputStylesheet library="css" name="content.css" />
-
 	<h:panelGroup styleClass="block">
-		<h:panelGroup styleClass="contentheader block">
-			<h:commandButton image="#{resource['images/minus.png']}"
-				immediate="true" styleClass="button"
-				rendered="#{commonBean.showShrink(blockId)}" title="Show Less"
-				actionListener="#{commonBean.doShrink(blockId)}" />
-			<h:commandButton image="#{resource['images/plus.png']}"
-				immediate="true" styleClass="button"
-				rendered="#{commonBean.showExpand(blockId)}" title="Show More"
-				actionListener="#{commonBean.doExpand(blockId)}" />
-			<h:commandButton image="#{resource['images/close.png']}"
-				immediate="true" styleClass="button"
-				rendered="#{showClose eq 'true'}" title="#{closeTitle}"
-				action="#{commonBean.doClose(blockId)}" />
-			<h:panelGroup styleClass="headerText">
-				<h:outputText value="#{headerText}" />
+		<h:form>
+			<h:panelGroup styleClass="contentheader block">
+				<h:commandButton image="#{resource['images/minus.png']}"
+					immediate="true" styleClass="button"
+					rendered="#{commonBean.showShrink(blockId)}" title="Show Less"
+					actionListener="#{commonBean.doShrink(blockId)}" />
+				<h:commandButton image="#{resource['images/plus.png']}"
+					immediate="true" styleClass="button"
+					rendered="#{commonBean.showExpand(blockId)}" title="Show More"
+					actionListener="#{commonBean.doExpand(blockId)}" />
+				<h:commandButton image="#{resource['images/close.png']}"
+					immediate="true" styleClass="button"
+					rendered="#{showClose eq 'true'}" title="#{closeTitle}"
+					action="#{commonBean.doClose(blockId)}" />
+				<h:panelGroup styleClass="headerText">
+					<h:outputText value="#{headerText}" />
+				</h:panelGroup>
 			</h:panelGroup>
-		</h:panelGroup>
+		</h:form>
 
 		<h:panelGroup styleClass="contentBody block">
 			<ui:insert />

@@ -17,56 +17,56 @@
 </h:head>
 <h:body>
 
-		<h:form id="mainForm" enctype="multipart/form-data">
 
-			<div id="container">
+	<div id="container">
 
-				<div id="header">
-					<h:graphicImage styleClass="banner" library="images"
-						name="header.jpg" />
-				</div>
+		<div id="header">
+			<h:graphicImage styleClass="banner" library="images"
+				name="header.jpg" />
+		</div>
 
-				<div id="vertmenu">
-					<p>Search By</p>
-					<ul id="search">
-						<li>Event<br />
-						</li>
-						<li id="smallText">List All Future Events</li>
-						<li id="smallText">List All Historic Data</li>
-						<li>Rider Name<br />
-						</li>
-						<li>Race Number<br />
-						</li>
-						<li>Rider Points Report</li>
-					</ul>
-					<p>Links</p>
-					<ul>
-						<li>Home</li>
-						<li>Calendar</li>
-						<li>Change Grade</li>
-						<li><h:commandLink action="admin" value="Admin" /></li>
-						<li>Test</li>
-						<li>Test2</li>
-					</ul>
-				</div>
-
-				<div id="content">
-
-					<p:messages for="messages" id="messages" />
-					<p:growl id="growl" for="growl" life="5000" globalOnly="true" />
-
-					<ui:insert name="content">
-						<div class="contentheader">Content</div>
-					</ui:insert>
-
-				</div>
-
-				<div id="footer">
-					<hr />
-					Stephen Wills<br /> <a href="mailto:stephen@novarse.com">stephen@novarse.com</a>
-				</div>
+		<h:form>
+			<div id="vertmenu">
+				<p>Search By</p>
+				<ul id="search">
+					<li>Event<br />
+					</li>
+					<li id="smallText">List All Future Events</li>
+					<li id="smallText">List All Historic Data</li>
+					<li>Rider Name<br />
+					</li>
+					<li>Race Number<br />
+					</li>
+					<li>Rider Points Report</li>
+				</ul>
+				<p>Links</p>
+				<ul>
+					<li>Home</li>
+					<li>Calendar</li>
+					<li>Change Grade</li>
+					<li><h:commandLink action="admin" value="Admin" /></li>
+					<li>Test</li>
+					<li>Test2</li>
+				</ul>
 			</div>
 		</h:form>
+
+		<div id="content">
+
+			<p:messages for="messages" id="messages" />
+			<p:growl id="growl" for="growl" life="5000" globalOnly="true" />
+
+			<ui:insert name="content">
+				<div class="contentheader">Content</div>
+			</ui:insert>
+
+		</div>
+
+		<div id="footer">
+			<hr />
+			Stephen Wills<br /> <a href="mailto:stephen@novarse.com">stephen@novarse.com</a>
+		</div>
+	</div>
 </h:body>
 
 </html>

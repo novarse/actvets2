@@ -24,12 +24,15 @@
 
 .button {
 	float: left;
-	margin: 2px 5px 0px 5px;
-	padding: 1px;
+	margin: 0px 5px 0px 5px;
+	padding: 3px;
 	width: 8px;
 	height: 8px;
 	border: 1px black solid;
-	background-color: white;
+	background-color: white; .
+	ui-icon -moz-border-radius: 2px;
+	-webkit-border-radius: 2px;
+	border-radius: 2px;
 }
 
 .widget-wrapper {

@@ -8,18 +8,21 @@
 		<ui:param name="sectionTitle" value="Load Data" />
 		<ui:param name="blockId" value="loadDataSection" />
 
-		<ui:decorate template="./loadDataSections/loadDescSection.xhtml" />
+		<h:form id="mainForm" enctype="multipart/form-data">
 
-		<ui:decorate template="./loadDataSections/loadTypesSection.xhtml" />
+			<ui:decorate template="./loadDataSections/loadDescSection.xhtml" />
 
-		<ui:decorate template="./loadDataSections/loadLocationsSection.xhtml" />
+			<ui:decorate template="./loadDataSections/loadTypesSection.xhtml" />
 
-		<ui:decorate template="./loadDataSections/loadSeasonsSection.xhtml" />
+			<ui:decorate template="./loadDataSections/loadLocationsSection.xhtml" />
 
-		<ui:decorate template="./loadDataSections/loadMembersSection.xhtml" />
+			<ui:decorate template="./loadDataSections/loadSeasonsSection.xhtml" />
 
-		<p:growl id="uploadMessage" for="uploadMessage" showDetail="true" />
+			<ui:decorate template="./loadDataSections/loadMembersSection.xhtml" />
 
+			<p:growl id="uploadMessage" for="uploadMessage" showDetail="true" />
+
+		</h:form>
 	</ui:decorate>
 
 </ui:composition>
