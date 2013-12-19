@@ -13,6 +13,12 @@ import javax.ejb.Stateless;
 
 import org.primefaces.event.FileUploadEvent;
 import org.smwillsdev.actvets.dataaccess.AdminDao;
+import org.smwillsdev.actvets.dataaccess.DescDao;
+import org.smwillsdev.actvets.dataaccess.EventDao;
+import org.smwillsdev.actvets.dataaccess.LocationDao;
+import org.smwillsdev.actvets.dataaccess.MemberDao;
+import org.smwillsdev.actvets.dataaccess.SeasonDao;
+import org.smwillsdev.actvets.dataaccess.TypeDao;
 import org.smwillsdev.actvets.domain.Admin;
 import org.smwillsdev.actvets.domain.Event;
 import org.smwillsdev.actvets.domain.EventDesc;
@@ -20,6 +26,7 @@ import org.smwillsdev.actvets.domain.EventLocation;
 import org.smwillsdev.actvets.domain.EventSeason;
 import org.smwillsdev.actvets.domain.EventType;
 import org.smwillsdev.actvets.domain.Member;
+import org.smwillsdev.actvets.domain.RaceHistory;
 import org.smwillsdev.actvets.type.AuState;
 import org.smwillsdev.actvets.util.Constants;
 import org.smwillsdev.actvets.util.Utils;
@@ -28,17 +35,30 @@ import org.smwillsdev.actvets.view.util.FacesUtils;
 @Stateless
 public class AdminService {
 
-	private static final String MEMBER = "member";
-
 	static Logger log = Logger.getLogger(AdminService.class.getName());
 
-	private static final String LOCATION = "location";
 	private static final int DESC_TITLE_COPY_LENGTH = 40;
-	private static final String DESCRIPTION = "description";
-	private static final String SEASON = "season";
-	private static final String TYPE = "type";
+
 	@EJB
 	private AdminDao dao;
+
+	@EJB
+	private EventDao eventDao;
+
+	@EJB
+	private MemberDao memberDao;
+
+	@EJB
+	private SeasonDao seasonDao;
+
+	@EJB
+	private LocationDao locationDao;
+
+	@EJB
+	private DescDao descDao;
+
+	@EJB
+	private TypeDao typeDao;
 
 	public Admin saveAdmin(Admin admin) {
 		return dao.save(admin, Admin.class);
@@ -68,11 +88,22 @@ public class AdminService {
 		return dao.save(member, Member.class);
 	}
 
+	public RaceHistory saveRaceHistory(RaceHistory raceHistory) {
+		return dao.save(raceHistory, RaceHistory.class);
+	}
+
 	public List<EventDesc> getDescList(List<EventDesc> descList) {
 		if (descList == null) {
 			descList = dao.getDescList();
 		}
 		return descList;
+	}
+
+	public List<Event> getEventList(List<Event> eventList) {
+		if (eventList == null) {
+			eventList = eventDao.findAll();
+		}
+		return eventList;
 	}
 
 	public List<EventType> getTypeList(List<EventType> typeList) {
@@ -119,7 +150,7 @@ public class AdminService {
 					new InputStreamReader(is));
 
 			if (Constants.EVENT_TYPE.equals(dataType)) {
-				processEventType(reader);
+				processEvent(reader);
 			} else if (Constants.EVENT_SEASON.equals(dataType)) {
 				processEventSeason(reader);
 			} else if (Constants.EVENT_DESC.equals(dataType)) {
@@ -128,6 +159,8 @@ public class AdminService {
 				processEventLocation(reader);
 			} else if (Constants.MEMBER.equals(dataType)) {
 				processMember(reader);
+			} else if (Constants.RACE_HISTORY.equals(dataType)) {
+				processRaceHistory(reader);
 			}
 
 			FacesUtils.displayMessage(Constants.UPLOAD_MESSAGE, "Successful",
@@ -152,11 +185,50 @@ public class AdminService {
 
 	}
 
+	private void processEvent(BufferedReader reader) throws Exception {
+		String line = null;
+		String[] parts;
+		line = reader.readLine();
+		if (!Constants.EVENT.equals(line.trim())) {
+			throw new Exception(
+					"The first part of this file must begin with the word 'event'");
+		}
+		while ((line = reader.readLine()) != null) {
+			parts = line.split("\t");
+			Event ent = new Event();
+			ent.setId(Long.parseLong(parts[0]));
+			ent.setDate(Utils.getDDMMYYYYHHMMDateFromStr(parts[1]));
+			ent.setDirector(memberDao.find(Utils.getLongFromStr(parts[2])));
+			ent.setEventSeason(seasonDao.find(Utils.getLongFromStr(parts[3])));
+			ent.setEventLocation(locationDao.find(Utils
+					.getLongFromStr(parts[4])));
+			ent.setEventDesc(descDao.find(Utils.getLongFromStr(parts[5])));
+			ent.setEventType(typeDao.find(Utils.getLongFromStr(parts[6])));
+			saveEvent(ent);
+		}
+	}
+
+	private void processRaceHistory(BufferedReader reader) throws Exception {
+		String line = null;
+		String[] parts;
+		line = reader.readLine();
+		if (!Constants.RACE_HISTORY.equals(line.trim())) {
+			throw new Exception(
+					"The first part of this file must begin with the word 'racehistory'");
+		}
+		while ((line = reader.readLine()) != null) {
+			parts = line.split("\t");
+			RaceHistory ent = new RaceHistory();
+			ent.setId(Long.parseLong(parts[0]));
+			saveRaceHistory(ent);
+		}
+	}
+
 	private void processMember(BufferedReader reader) throws Exception {
 		String line = null;
 		String[] parts;
 		line = reader.readLine();
-		if (!MEMBER.equals(line.trim())) {
+		if (!Constants.MEMBER.equals(line.trim())) {
 			throw new Exception(
 					"The first part of this file must begin with the word 'member'");
 		}
@@ -189,22 +261,11 @@ public class AdminService {
 		}
 	}
 
-	// return getId() + TAB + getFirstName() + TAB + isActive() + TAB
-	// + getStreet() + TAB + getSuburb() + TAB + getState() + TAB
-	// + getPostcode() + TAB + getPhoneHome() + TAB
-	// + getPhoneWorkOrMobile() + TAB
-	// + Utils.formatDateForExport(getDob()) + TAB + getGender() + TAB
-	// + getEmail() + TAB + isFirstAid() + TAB + getEmergencyContact()
-	// + TAB + getPhoneEmergencyContact() + TAB
-	// + getPhoneEmergencyContact2() + TAB + getNumber() + TAB + grade
-	// + TAB + getSubGrade() + TAB + getCriteriumGrade() + TAB
-	// + isDirector() + TAB + getAVCCNumber() + TAB + getLastName();
-
 	private void processEventSeason(BufferedReader reader) throws Exception {
 		String line = null;
 		String[] parts;
 		line = reader.readLine();
-		if (!SEASON.equals(line.trim())) {
+		if (!Constants.EVENT_SEASON.equals(line.trim())) {
 			throw new Exception(
 					"The first part of this file must begin with the word 'season'");
 		}
@@ -229,7 +290,7 @@ public class AdminService {
 		String line = null;
 		String[] parts;
 		line = reader.readLine();
-		if (!DESCRIPTION.equals(line.trim())) {
+		if (!Constants.EVENT_DESC.equals(line.trim())) {
 			throw new Exception(
 					"The first part of this file must begin with the word 'description'");
 		}
@@ -265,7 +326,7 @@ public class AdminService {
 		String line = null;
 		String[] parts;
 		line = reader.readLine();
-		if (!TYPE.equals(line.trim())) {
+		if (!Constants.EVENT_TYPE.equals(line.trim())) {
 			throw new Exception(
 					"The first part of this file must begin with the word 'type'");
 		}
@@ -282,7 +343,7 @@ public class AdminService {
 		String line = null;
 		String[] parts;
 		line = reader.readLine();
-		if (!LOCATION.equals(line.trim())) {
+		if (!Constants.EVENT_LOCATION.equals(line.trim())) {
 			throw new Exception(
 					"The first part of this file must begin with the word 'location'");
 		}

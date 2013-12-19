@@ -25,8 +25,6 @@ public class Utils {
 
 	static Logger log = Logger.getLogger(Utils.class.getClass().getName());
 
-	private static final String ACT = "ACT";
-
 	public static AuState getStateFromStr(String state) {
 		AuState result = null;
 		if (state == null || state.isEmpty()) {
@@ -104,15 +102,61 @@ public class Utils {
 		return null;
 	}
 
+	public static Long getLongFromStr(String str) {
+		if (str != null && !str.isEmpty()) {
+			try {
+				Long result = Long.parseLong(str);
+				return result;
+			} catch (NumberFormatException e) {
+				log.warning("Error getting Long from String: " + str);
+			}
+		}
+		return null;
+	}
+
 	public static Date getDDMMYYYYDateFromStr(String str) {
 		if (str != null && !str.isEmpty()) {
-			String[] parts = str.split("[/-]");
+			String[] parts = str.split("[/ -]");
+			if (parts.length < 3) {
+				// TODO handle this properly
+				return null;
+			}
 			try {
 				Calendar cal = Calendar.getInstance(TimeZone
 						.getTimeZone(Constants.TZ_AUSTRALIA_NSW));
 				cal.set(Integer.parseInt(parts[2]),
 						Integer.parseInt(parts[1]) - 1,
 						Integer.parseInt(parts[0]));
+
+				return cal.getTime();
+			} catch (NumberFormatException e) {
+				log.warning("Error getting Date from String: " + str);
+			}
+		}
+		return null;
+	}
+
+	public static Date getDDMMYYYYHHMMDateFromStr(String str) {
+		if (str != null && !str.isEmpty()) {
+			String[] parts = str.split("[:/ -]");
+			if (parts.length < 4) {
+				return getDDMMYYYYDateFromStr(str);
+			} else if (parts.length < 5) {
+				// TODO handle this properly
+				return null;
+			}
+			try {
+				Calendar cal = Calendar.getInstance(TimeZone
+						.getTimeZone(Constants.TZ_AUSTRALIA_NSW));
+				cal.set(Integer.parseInt(parts[2]),
+						Integer.parseInt(parts[1]) - 1,
+						Integer.parseInt(parts[0]),
+						Integer.parseInt(parts[3]) + 13, // TODO remove this +
+															// 13.
+															// Put here to parse
+															// events.txt with
+															// funny time part
+						Integer.parseInt(parts[4]), 0);
 
 				return cal.getTime();
 			} catch (NumberFormatException e) {

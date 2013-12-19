@@ -11,9 +11,18 @@ public class BaseDao<T> implements Dao<T> {
 	EntityManager em;
 
 	@Override
-	public T save(T entity) {
-		entity = em.merge(entity);
-		return entity;
+	public T save(T ent) {
+		ent = em.merge(ent);
+		return ent;
+	}
+
+	@Override
+	public T find(Class<T> clazz, Long id) {
+		if (id == null) {
+			return null;
+		} else {
+			return em.find(clazz, id);
+		}
 	}
 
 }

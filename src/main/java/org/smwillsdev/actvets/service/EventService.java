@@ -36,6 +36,6 @@ public class EventService implements Serializable {
 	}
 
 	public Event getEvent(long id) {
-		return dao.getEvent(id);
+		return dao.find(id);
 	}
 }

@@ -72,7 +72,7 @@ public class UtilsTest {
 	}
 
 	@Test
-	public void testGetDateFromStr() {
+	public void testGetDDMMYYYYDateFromStr() {
 		Assert.assertEquals(null, Utils.getDDMMYYYYDateFromStr(null));
 		Assert.assertEquals(null, Utils.getDDMMYYYYDateFromStr(""));
 
@@ -83,6 +83,31 @@ public class UtilsTest {
 				.getDDMMYYYYDateFromStr("31/1/1999").toString());
 		Assert.assertEquals(cal.getTime().toString(), Utils
 				.getDDMMYYYYDateFromStr("31-1-1999").toString());
+		Assert.assertEquals(cal.getTime().toString(), Utils
+				.getDDMMYYYYDateFromStr("31/1/1999 01:00:00").toString());
+	}
+
+	@Test
+	public void testGetDDMMYYYYHHMMDateFromStr() {
+		Assert.assertEquals(null, Utils.getDDMMYYYYHHMMDateFromStr(null));
+		Assert.assertEquals(null, Utils.getDDMMYYYYHHMMDateFromStr(""));
+
+		Calendar cal = Calendar.getInstance(TimeZone
+				.getTimeZone(Constants.TZ_AUSTRALIA_NSW));
+		cal.set(1999, Calendar.JANUARY, 31);
+		Assert.assertEquals(cal.getTime().toString(), Utils
+				.getDDMMYYYYHHMMDateFromStr("31/1/1999").toString());
+		Assert.assertEquals(cal.getTime().toString(), Utils
+				.getDDMMYYYYHHMMDateFromStr("31-1-1999").toString());
+
+		Assert.assertEquals(null, Utils.getDDMMYYYYHHMMDateFromStr("31/1"));
+
+		Assert.assertEquals(null,
+				Utils.getDDMMYYYYHHMMDateFromStr("31/1/1999 01"));
+
+		cal.set(1999, Calendar.JANUARY, 31, 01, 30, 00);
+		Assert.assertEquals(cal.getTime().toString(), Utils
+				.getDDMMYYYYHHMMDateFromStr("31/1/1999 01:30:00").toString());
 	}
 
 	@Test

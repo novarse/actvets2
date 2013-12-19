@@ -16,6 +16,7 @@ import org.smwillsdev.actvets.domain.EventLocation;
 import org.smwillsdev.actvets.domain.EventSeason;
 import org.smwillsdev.actvets.domain.EventType;
 import org.smwillsdev.actvets.domain.Member;
+import org.smwillsdev.actvets.domain.RaceHistory;
 import org.smwillsdev.actvets.domain.SysVars;
 import org.smwillsdev.actvets.service.AdminService;
 import org.smwillsdev.actvets.util.Constants;
@@ -35,12 +36,12 @@ public class AdminBean implements Serializable {
 
 	private Event event;
 
+	private Event eventE;
+
 	private EventDesc desc;
 
 	// used for the admin "Edit" object
 	private EventDesc descE;
-
-	private EventDesc descEL;
 
 	private EventType eventType;
 
@@ -51,6 +52,10 @@ public class AdminBean implements Serializable {
 	private Member member;
 
 	private Member director;
+
+	private RaceHistory raceHistory;
+
+	private RaceHistory raceHistoryE;
 
 	private String email;
 
@@ -72,6 +77,8 @@ public class AdminBean implements Serializable {
 
 	private boolean memberShown;
 
+	private boolean raceHistoryShown;
+
 	private boolean loadEventShown;
 
 	private boolean loadDescShown;
@@ -83,6 +90,10 @@ public class AdminBean implements Serializable {
 	private boolean loadTypeShown;
 
 	private boolean loadMemberShown;
+
+	private boolean loadRaceHistoryShown;
+
+	private List<Event> eventList;
 
 	private List<EventDesc> descList;
 
@@ -168,6 +179,8 @@ public class AdminBean implements Serializable {
 			loadLocationShown = true;
 		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
 			loadMemberShown = true;
+		} else if (Constants.LOAD_RACE_HISTORY.equals(blockId)) {
+			loadRaceHistoryShown = true;
 		}
 	}
 
@@ -200,6 +213,8 @@ public class AdminBean implements Serializable {
 			loadLocationShown = false;
 		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
 			loadMemberShown = false;
+		} else if (Constants.LOAD_RACE_HISTORY.equals(blockId)) {
+			loadRaceHistoryShown = false;
 		}
 	}
 
@@ -230,6 +245,8 @@ public class AdminBean implements Serializable {
 			return loadLocationShown;
 		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
 			return loadMemberShown;
+		} else if (Constants.LOAD_RACE_HISTORY.equals(blockId)) {
+			return loadRaceHistoryShown;
 		} else {
 			return false;
 		}
@@ -268,6 +285,8 @@ public class AdminBean implements Serializable {
 			return !loadLocationShown;
 		} else if (Constants.LOAD_MEMBER.equals(blockId)) {
 			return !loadMemberShown;
+		} else if (Constants.LOAD_RACE_HISTORY.equals(blockId)) {
+			return !loadRaceHistoryShown;
 		} else {
 			return false;
 		}
@@ -286,6 +305,8 @@ public class AdminBean implements Serializable {
 			saveLocation();
 		} else if (Constants.MEMBER.equals(blockId)) {
 			saveMember();
+		} else if (Constants.RACE_HISTORY.equals(blockId)) {
+			saveRaceHistory();
 		}
 		FacesUtils.popupMessage("Saved");
 		return "";
@@ -405,6 +426,28 @@ public class AdminBean implements Serializable {
 		this.director = director;
 	}
 
+	public RaceHistory getRaceHistoryE() {
+		if (raceHistoryE == null) {
+			raceHistoryE = new RaceHistory();
+		}
+		return raceHistoryE;
+	}
+
+	public void setRaceHistoryE(RaceHistory raceHistoryE) {
+		this.raceHistoryE = raceHistoryE;
+	}
+
+	public RaceHistory getRaceHistory() {
+		if (raceHistory == null) {
+			raceHistory = new RaceHistory();
+		}
+		return raceHistory;
+	}
+
+	public void setRaceHistory(RaceHistory raceHistory) {
+		this.raceHistory = raceHistory;
+	}
+
 	private void saveEvent() {
 		service.saveEvent(event);
 		event = null;
@@ -413,22 +456,22 @@ public class AdminBean implements Serializable {
 	/**
 	 * Default is to save the edited description as opposed to a new description
 	 */
-	private String saveDesc() {
-		return saveDesc(true);
+	private void saveDesc() {
+		saveDesc(true);
 	}
 
 	/**
 	 * Default is to save the edited description as opposed to a new description
 	 */
-	private String saveDesc(boolean isEdit) {
+	private void saveDesc(boolean isEdit) {
 		if (isEdit) {
-			descE = service.saveDesc(descE);
+			service.saveDesc(descE);
+			descE = null;
 		} else {
 			service.saveDesc(desc);
 			desc = null;
 			descList = null;
 		}
-		return "";
 	}
 
 	private void saveType() {
@@ -456,6 +499,20 @@ public class AdminBean implements Serializable {
 		directorList = null;
 	}
 
+	private void saveRaceHistory() {
+		saveRaceHistory(true);
+	}
+
+	private void saveRaceHistory(boolean isEdit) {
+		if (isEdit) {
+			service.saveRaceHistory(raceHistoryE);
+			raceHistoryE = null;
+		} else {
+			service.saveRaceHistory(raceHistory);
+			raceHistory = null;
+		}
+	}
+
 	public List<Integer> getSeasonOrder() {
 		return Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14,
 				15, 16, 17, 19, 20);
@@ -464,6 +521,11 @@ public class AdminBean implements Serializable {
 	public List<EventDesc> getDescList() {
 		descList = service.getDescList(descList);
 		return descList;
+	}
+
+	public List<Event> getEventList() {
+		eventList = service.getEventList(eventList);
+		return eventList;
 	}
 
 	public List<EventType> getTypeList() {
@@ -511,6 +573,10 @@ public class AdminBean implements Serializable {
 		service.processDataLoad(event, Constants.MEMBER);
 	}
 
+	public void handleRaceHistoryUpload(FileUploadEvent event) {
+		service.processDataLoad(event, Constants.RACE_HISTORY);
+	}
+
 	public String getEventLine(String title, String eventType, String director,
 			String distLong, String distShort) {
 		return Utils.getEventLine(title, eventType, director, distLong,
@@ -528,12 +594,35 @@ public class AdminBean implements Serializable {
 		this.descE = descE;
 	}
 
-	public EventDesc getDescEL() {
-		return descEL;
+	public boolean isLoadRaceHistoryShown() {
+		return loadRaceHistoryShown;
 	}
 
-	public void setDescEL(EventDesc descEL) {
-		this.descEL = descEL;
+	public void setLoadRaceHistoryShown(boolean loadRaceHistoryShown) {
+		this.loadRaceHistoryShown = loadRaceHistoryShown;
+	}
+
+	public boolean isRaceHistoryShown() {
+		return raceHistoryShown;
+	}
+
+	public void setRaceHistoryShown(boolean raceHistoryShown) {
+		this.raceHistoryShown = raceHistoryShown;
+	}
+
+	public Event getEventE() {
+		if (eventE == null) {
+			eventE = new Event();
+		}
+		return eventE;
+	}
+
+	public void setEventE(Event eventE) {
+		this.eventE = eventE;
+	}
+
+	public String getDateStr(Event event) {
+		return Constants.getFormatterDD_MM_YY_HH_MM().format(event.getDate());
 	}
 
 }

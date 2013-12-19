@@ -4,5 +4,7 @@ import javax.ejb.Local;
 
 @Local
 public interface Dao<T> {
-	public T save(T dao);
+	public T save(T ent);
+
+	public T find(Class<T> clazz, Long id);
 }

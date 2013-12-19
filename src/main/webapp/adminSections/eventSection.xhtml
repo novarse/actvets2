@@ -13,6 +13,62 @@
 
 			<ui:define name="editSection">
 
+				<h:panelGrid columns="2" columnClasses="width100">
+
+					<h:outputLabel value="Event" />
+					<h:selectOneMenu value="#{adminBean.eventE}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.eventList}" var="entity"
+							itemLabel="#{adminBean.getDateStr(entity)}" />
+						<f:ajax render="eventEditGrid" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+
+				<h:panelGrid id="eventEditGrid" columns="2" columnClasses="width100">
+
+					<h:outputLabel value="Date" />
+					<p:calendar value="#{adminBean.eventE.date}"
+						pattern="dd/MM/yyyy HH:mm" styleClass="pfDate" />
+
+					<h:outputLabel value="Description" />
+					<h:selectOneMenu value="#{adminBean.eventE.eventDesc}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{adminBean.descList}" var="entity"
+							itemLabel="#{entity.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Event Type" />
+					<h:selectOneMenu value="#{adminBean.eventE.eventType}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{adminBean.typeList}" var="entity"
+							itemLabel="#{entity.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Location" />
+					<h:selectOneMenu value="#{adminBean.eventE.eventLocation}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{adminBean.locationList}" var="entity"
+							itemLabel="#{entity.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Season" />
+					<h:selectOneMenu value="#{adminBean.eventE.eventSeason}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{adminBean.seasonList}" var="entity"
+							itemLabel="#{entity.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Director" />
+					<h:selectOneMenu value="#{adminBean.eventE.director}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItems value="#{adminBean.directorList}" var="entity"
+							itemLabel="#{entity.fullName}" />
+					</h:selectOneMenu>
+
+					
+				</h:panelGrid>
 
 			</ui:define>
 

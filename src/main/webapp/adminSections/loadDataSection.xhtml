@@ -10,6 +10,8 @@
 
 		<h:form id="mainForm" enctype="multipart/form-data">
 
+			<ui:decorate template="./loadDataSections/loadEventsSection.xhtml" />
+
 			<ui:decorate template="./loadDataSections/loadDescSection.xhtml" />
 
 			<ui:decorate template="./loadDataSections/loadTypesSection.xhtml" />
@@ -19,6 +21,8 @@
 			<ui:decorate template="./loadDataSections/loadSeasonsSection.xhtml" />
 
 			<ui:decorate template="./loadDataSections/loadMembersSection.xhtml" />
+
+			<ui:decorate template="./loadDataSections/loadRaceHistorySection.xhtml" />
 
 			<p:growl id="uploadMessage" for="uploadMessage" showDetail="true" />
 

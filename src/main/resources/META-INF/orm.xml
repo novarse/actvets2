@@ -5,7 +5,7 @@
 
 	<named-query name="getAllEvents">
 		<query>
-			select e from Event e
+			select e from Event e order by e.date desc
 		</query>
 	</named-query>
 
@@ -53,7 +53,7 @@
 
 	<named-query name="getFutureEvents">
 		<query>
-			select e from Event e where e.date >= :date
+			select e from Event e where e.date >= :date order by e.date 
 		</query>
 	</named-query>
 

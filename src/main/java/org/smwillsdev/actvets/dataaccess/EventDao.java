@@ -13,9 +13,8 @@ import org.smwillsdev.actvets.domain.Event;
 public class EventDao extends BaseDao<Event> {
 
 	@Override
-	public Event save(Event event) {
-		System.out.println(event);
-		return super.save(event);
+	public Event save(Event ent) {
+		return super.save(ent);
 	}
 
 	public List<Event> findAll() {
@@ -34,8 +33,8 @@ public class EventDao extends BaseDao<Event> {
 				.setParameter("date", date).getResultList();
 	}
 
-	public Event getEvent(long id) {
-		return em.find(Event.class, id);
+	public Event find(Long id) {
+		return super.find(Event.class, id);
 	}
 
 }

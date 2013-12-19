@@ -23,6 +23,7 @@ public class AdminDao {
 	private static final String GET_ALL_LOCATIONS = "getAllLocations";
 	private static final String GET_ALL_EVENT_TYPES = "getAllEventTypes";
 	private static final String GET_ALL_DESCRIPTIONS = "getAllDescriptions";
+
 	@PersistenceContext
 	EntityManager em;
 
