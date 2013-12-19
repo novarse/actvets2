@@ -465,8 +465,8 @@ public class AdminBean implements Serializable {
 	 */
 	private void saveDesc(boolean isEdit) {
 		if (isEdit) {
-			service.saveDesc(descE);
-			descE = null;
+			descE = service.saveDesc(descE);
+			descList = null;
 		} else {
 			service.saveDesc(desc);
 			desc = null;
@@ -619,10 +619,6 @@ public class AdminBean implements Serializable {
 
 	public void setEventE(Event eventE) {
 		this.eventE = eventE;
-	}
-
-	public String getDateStr(Event event) {
-		return Constants.getFormatterDD_MM_YY_HH_MM().format(event.getDate());
 	}
 
 }

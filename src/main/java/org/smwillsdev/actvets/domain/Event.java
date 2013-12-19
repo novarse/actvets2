@@ -12,6 +12,8 @@ import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import org.smwillsdev.actvets.util.Constants;
+
 @Entity
 public class Event implements Serializable {
 
@@ -40,11 +42,16 @@ public class Event implements Serializable {
 	@ManyToOne
 	private Member director;
 
+	private String displayDate;
+
 	public Date getDate() {
 		return date;
 	}
 
 	public void setDate(Date date) {
+		if (date != null) {
+			displayDate = Constants.getFormatterDD_MM_YY_HH_MM().format(date);
+		}
 		this.date = date;
 	}
 
@@ -94,6 +101,14 @@ public class Event implements Serializable {
 
 	public void setId(long id) {
 		this.id = id;
+	}
+
+	public String getDisplayDate() {
+		return displayDate;
+	}
+
+	public void setDisplayDate(String displayDate) {
+		this.displayDate = displayDate;
 	}
 
 }

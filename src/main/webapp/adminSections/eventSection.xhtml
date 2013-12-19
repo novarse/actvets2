@@ -20,7 +20,7 @@
 						converter="omnifaces.SelectItemsConverter">
 						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
 						<f:selectItems value="#{adminBean.eventList}" var="entity"
-							itemLabel="#{adminBean.getDateStr(entity)}" />
+							itemLabel="#{entity.displayDate}" />
 						<f:ajax render="eventEditGrid" />
 					</h:selectOneMenu>
 
