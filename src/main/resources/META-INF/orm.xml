@@ -59,7 +59,9 @@
 
 	<named-query name="getHistoricEvents">
 		<query>
-			select e from Event e where e.date >= :date
+			<![CDATA[
+			select e from Event e where e.date < :date order by e.date desc
+			]]>
 		</query>
 	</named-query>
 

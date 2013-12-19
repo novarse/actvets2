@@ -8,57 +8,71 @@
 		<ui:param name="sectionTitle" value="Event" />
 		<ui:param name="blockId" value="event" />
 
-		<h:panelGrid columns="2" columnClasses="width90">
+		<ui:decorate
+			template="../WEB-INF/templates/adminEditSectionTemplate.xhtml">
 
-			<h:outputLabel value="Date" />
-			<p:calendar value="#{adminBean.event.date}" pattern="dd/MM/yyyy HH:mm" styleClass="pfDate"/>
+			<ui:define name="editSection">
 
-			<h:outputLabel value="Description" />
-			<h:selectOneMenu value="#{adminBean.event.eventDesc}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="-Select a description-"
-					noSelectionOption="true" />
-				<f:selectItems value="#{adminBean.descList}" var="desc"
-					itemLabel="#{desc.title}" />
-			</h:selectOneMenu>
 
-			<h:outputLabel value="Event Type" />
-			<h:selectOneMenu value="#{adminBean.event.eventType}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="-Select an event type-"
-					noSelectionOption="true" />
-				<f:selectItems value="#{adminBean.typeList}" var="type"
-					itemLabel="#{type.title}" />
-			</h:selectOneMenu>
+			</ui:define>
 
-			<h:outputLabel value="Event Location" />
-			<h:selectOneMenu value="#{adminBean.event.eventLocation}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="-Select a location-"
-					noSelectionOption="true" />
-				<f:selectItems value="#{adminBean.locationList}" var="var"
-					itemLabel="#{var.title}" />
-			</h:selectOneMenu>
+			<ui:define name="newSection">
 
-			<h:outputLabel value="Event Season" />
-			<h:selectOneMenu value="#{adminBean.event.eventSeason}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="-Select a season-"
-					noSelectionOption="true" />
-				<f:selectItems value="#{adminBean.seasonList}" var="var"
-					itemLabel="#{var.title}" />
-			</h:selectOneMenu>
+				<h:panelGrid columns="2" columnClasses="width100">
 
-			<h:outputLabel value="Director" />
-			<h:selectOneMenu value="#{adminBean.event.director}"
-				converter="omnifaces.SelectItemsConverter">
-				<f:selectItem itemLabel="-Select a director-"
-					noSelectionOption="true" />
-				<f:selectItems value="#{adminBean.directorList}" var="var"
-					itemLabel="#{var.lastName}, #{var.firstName}" />
-			</h:selectOneMenu>
+					<h:outputLabel value="Date" />
+					<p:calendar value="#{adminBean.event.date}"
+						pattern="dd/MM/yyyy HH:mm" styleClass="pfDate" />
 
-		</h:panelGrid>
+					<h:outputLabel value="Description" />
+					<h:selectOneMenu value="#{adminBean.event.eventDesc}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="-Select a description-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.descList}" var="desc"
+							itemLabel="#{desc.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Event Type" />
+					<h:selectOneMenu value="#{adminBean.event.eventType}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="-Select an event type-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.typeList}" var="type"
+							itemLabel="#{type.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Event Location" />
+					<h:selectOneMenu value="#{adminBean.event.eventLocation}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="-Select a location-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.locationList}" var="var"
+							itemLabel="#{var.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Event Season" />
+					<h:selectOneMenu value="#{adminBean.event.eventSeason}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="-Select a season-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.seasonList}" var="var"
+							itemLabel="#{var.title}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Director" />
+					<h:selectOneMenu value="#{adminBean.event.director}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="-Select a director-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.directorList}" var="var"
+							itemLabel="#{var.lastName}, #{var.firstName}" />
+					</h:selectOneMenu>
+
+				</h:panelGrid>
+			</ui:define>
+
+		</ui:decorate>
 
 	</ui:decorate>
 

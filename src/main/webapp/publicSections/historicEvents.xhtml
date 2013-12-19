@@ -5,15 +5,19 @@
 
 	<ui:decorate template="../WEB-INF/templates/plainTemplate.xhtml">
 
-		<ui:repeat var="event" value="#{historicEventsBean.events}">
-			<p>
-				<b><h:outputText value="#{event.date}">
-						<f:convertDateTime pattern="E, d MMM h:mma" timeZone="Australian/NSW"/>
-					</h:outputText></b><br />
-				<h:commandLink
-					value="#{event.eventLocation.title} (#{event.director.fullName}) Dist(#{event.eventDesc.distLong}km,#{event.eventDesc.distShort}km)" />
-			</p>
-		</ui:repeat>
+		<h:form>
+			<ui:repeat var="event" value="#{historicEventsBean.events}">
+				<p>
+					<b><h:outputText value="#{event.date}">
+							<f:convertDateTime pattern="E, d MMM h:mma"
+								timeZone="Australian/NSW" />
+						</h:outputText></b><br />
+					<h:commandLink
+						value="#{adminBean.getEventLine(event.eventLocation.title, event.eventType.title, event.director.fullName, event.eventDesc.distLong, event.eventDesc.distShort)}"
+						action="#{futureEventsBean.eventClicked(event.id)}" />
+				</p>
+			</ui:repeat>
+		</h:form>
 
 	</ui:decorate>
 

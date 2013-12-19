@@ -8,84 +8,70 @@
 		<ui:param name="sectionTitle" value="Description" />
 		<ui:param name="blockId" value="eventDesc" />
 
-		<h:form>
+		<ui:decorate
+			template="../WEB-INF/templates/adminEditSectionTemplate.xhtml">
 
-			<p:tabView id="descTabView">
+			<ui:define name="editSection">
 
-				<p:tab id="descEditTab" title="Edit">
+				<h:panelGrid columns="2" columnClasses="width100">
 
-					<h:panelGrid id="dzzescEditGrid" columns="2"
-						columnClasses="width100">
+					<h:outputLabel value="Description" />
+					<h:selectOneMenu value="#{adminBean.descE}"
+						converter="omnifaces.SelectItemsConverter">
+						<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
+						<f:selectItems value="#{adminBean.descList}" var="entity"
+							itemLabel="#{entity.title}" />
+						<f:ajax render="descEditGrid" />
+					</h:selectOneMenu>
 
-						<h:outputLabel value="Description" />
-						<h:selectOneMenu value="#{adminBean.descE}"
-							converter="omnifaces.SelectItemsConverter">
-							<f:selectItem itemLabel="Choose item" noSelectionOption="true" />
-							<f:selectItems value="#{adminBean.descList}" var="entity"
-								itemLabel="#{entity.title}" />
-							<f:ajax render="descEditGrid" />
-						</h:selectOneMenu>
+				</h:panelGrid>
 
-					</h:panelGrid>
+				<h:panelGrid id="descEditGrid" columns="2" columnClasses="width100">
 
-					<h:panelGrid id="descEditGrid" columns="2" columnClasses="width100">
+					<h:outputLabel value="Title" />
+					<h:inputText value="#{adminBean.descE.title}" />
 
-						<h:outputLabel value="Title" />
-						<h:inputText value="#{adminBean.descE.title}" />
+					<h:outputLabel value="Description" />
+					<h:inputTextarea value="#{adminBean.descE.description}" cols="60"
+						rows="5" />
 
-						<h:outputLabel value="Description" />
-						<h:inputTextarea value="#{adminBean.descE.description}" cols="60"
-							rows="5" />
+					<h:outputLabel value="Short Distance" />
+					<h:inputText value="#{adminBean.descE.distShort}" />
 
-						<h:outputLabel value="Short Distance" />
-						<h:inputText value="#{adminBean.descE.distShort}" />
+					<h:outputLabel value="Long Distance" />
+					<h:inputText value="#{adminBean.descE.distLong}" />
 
-						<h:outputLabel value="Long Distance" />
-						<h:inputText value="#{adminBean.descE.distLong}" />
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.descE.active}" />
+				</h:panelGrid>
 
-						<h:outputLabel value="Is Active" />
-						<h:selectBooleanCheckbox value="#{adminBean.descE.active}" />
+			</ui:define>
 
-						<h:panelGroup styleClass="adminSave">
-							<h:commandButton value="Save"
-								action="#{adminBean.saveEdit(blockId)}" />
-						</h:panelGroup>
+			<ui:define name="newSection">
 
-					</h:panelGrid>
+				<h:panelGrid columns="2" columnClasses="width100">
 
-				</p:tab>
+					<h:outputLabel value="Title" />
+					<h:inputText value="#{adminBean.desc.title}" />
 
-				<p:tab id="descNewTab" title="New">
+					<h:outputLabel value="Description" />
+					<h:inputTextarea value="#{adminBean.desc.description}" cols="60"
+						rows="5" />
 
-					<h:panelGrid columns="2" columnClasses="width100">
+					<h:outputLabel value="Short Distance" />
+					<h:inputText value="#{adminBean.desc.distShort}" />
 
-						<h:outputLabel value="Title" />
-						<h:inputText value="#{adminBean.desc.title}" />
+					<h:outputLabel value="Long Distance" />
+					<h:inputText value="#{adminBean.desc.distLong}" />
 
-						<h:outputLabel value="Description" />
-						<h:inputTextarea value="#{adminBean.desc.description}" cols="60"
-							rows="5" />
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.desc.active}" />
 
-						<h:outputLabel value="Short Distance" />
-						<h:inputText value="#{adminBean.desc.distShort}" />
+				</h:panelGrid>
+			</ui:define>
 
-						<h:outputLabel value="Long Distance" />
-						<h:inputText value="#{adminBean.desc.distLong}" />
+		</ui:decorate>
 
-						<h:outputLabel value="Is Active" />
-						<h:selectBooleanCheckbox value="#{adminBean.desc.active}" />
-
-						<h:panelGroup styleClass="adminSave"
-							rendered="#{adminBean.showSaveButton(blockId)}">
-							<h:commandButton value="Save"
-								action="#{adminBean.saveSection(blockId)}" />
-						</h:panelGroup>
-
-					</h:panelGrid>
-				</p:tab>
-
-			</p:tabView>
-		</h:form>
 	</ui:decorate>
 
 </ui:composition>

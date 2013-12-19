@@ -35,7 +35,6 @@ div,span,p,textarea {
 }
 
 .ui-helper-clearfix:after {
-		border: 1px solid #000000;
 	overflow: hidden;
 	width: 100%;
 	clear:none;

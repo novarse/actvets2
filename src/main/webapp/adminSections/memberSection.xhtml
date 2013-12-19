@@ -9,67 +9,84 @@
 		<ui:param name="sectionTitle" value="Member" />
 		<ui:param name="blockId" value="member" />
 
-		<h:panelGrid columns="2" columnClasses="width90">
-			<h:outputLabel value="First Name" />
-			<h:inputText value="#{adminBean.member.firstName}" />
+		<ui:decorate
+			template="../WEB-INF/templates/adminEditSectionTemplate.xhtml">
 
-			<h:outputLabel value="Last Name" />
-			<h:inputText value="#{adminBean.member.lastName}" />
+			<ui:define name="editSection">
 
-			<h:outputLabel value="Race Number" />
-			<h:inputText value="#{adminBean.member.raceNumber}" />
 
-			<h:outputLabel value="Grade" />
-			<h:inputText value="#{adminBean.member.grade}" />
+			</ui:define>
 
-			<h:outputLabel value="Sub Grade" />
-			<h:selectOneMenu value="#{adminBean.member.subGrade}">
-				<f:selectItem itemLabel="-Select a sub grade-"
-					noSelectionOption="true" />
-				<f:selectItem itemValue="1" />
-				<f:selectItem itemValue="2" />
-				<f:selectItem itemValue="3" />
-			</h:selectOneMenu>
+			<ui:define name="newSection">
 
-			<h:outputLabel value="Criterium Grade" />
-			<h:inputText value="#{adminBean.member.criteriumGrade}" />
+				<h:panelGrid columns="2" columnClasses="width100">
 
-			<h:outputLabel value="Phone Home" />
-			<h:inputText value="#{adminBean.member.phoneHome}" />
+					<h:outputLabel value="First Name" />
+					<h:inputText value="#{adminBean.member.firstName}" />
 
-			<h:outputLabel value="Mobile / Work" />
-			<h:inputText value="#{adminBean.member.phoneWorkOrMobile}" />
+					<h:outputLabel value="Last Name" />
+					<h:inputText value="#{adminBean.member.lastName}" />
 
-			<h:outputLabel value="Email" />
-			<h:inputText value="#{adminBean.member.email}" />
+					<h:outputLabel value="Race Number" />
+					<h:inputText value="#{adminBean.member.raceNumber}" />
 
-			<h:outputLabel value="Date of Birth" />
-			<p:calendar value="#{adminBean.member.dateOfBirth}" pattern="dd/MM/yyyy" styleClass="pfDate" />
+					<h:outputLabel value="Grade" />
+					<h:inputText value="#{adminBean.member.grade}" />
 
-			<h:outputLabel value="Gender" />
-			<h:inputText value="#{adminBean.member.gender}"/>
-			
-			<h:outputLabel value="First Aid" />
-			<h:selectBooleanCheckbox value="#{adminBean.member.firstAid}" />
+					<h:outputLabel value="Sub Grade" />
+					<h:selectOneMenu value="#{adminBean.member.subGrade}">
+						<f:selectItem itemLabel="-Select a sub grade-"
+							noSelectionOption="true" />
+						<f:selectItem itemValue="1" />
+						<f:selectItem itemValue="2" />
+						<f:selectItem itemValue="3" />
+					</h:selectOneMenu>
 
-			<h:outputLabel value="Emergency Contact" />
-			<h:inputText value="#{adminBean.member.emergencyContact}" />
+					<h:outputLabel value="Criterium Grade" />
+					<h:inputText value="#{adminBean.member.criteriumGrade}" />
 
-			<h:outputLabel value="Em Cont Ph 1" title="Emergency Contact Phone 1" />
-			<h:inputText value="#{adminBean.member.phoneEmergencyContact}"
-				title="Emergency Contact Phone 1" />
+					<h:outputLabel value="Phone Home" />
+					<h:inputText value="#{adminBean.member.phoneHome}" />
 
-			<h:outputLabel value="Em Cont Ph 2" title="Emergency Contact Phone 2" />
-			<h:inputText value="#{adminBean.member.phoneEmergencyContact2}"
-				title="Emergency Contact Phone 2" />
+					<h:outputLabel value="Mobile / Work" />
+					<h:inputText value="#{adminBean.member.phoneWorkOrMobile}" />
 
-			<h:outputLabel value="Is Director" />
-			<h:selectBooleanCheckbox value="#{adminBean.member.raceDirector}" />
+					<h:outputLabel value="Email" />
+					<h:inputText value="#{adminBean.member.email}" />
 
-			<h:outputLabel value="Is Active"/>
-			<h:selectBooleanCheckbox value="#{adminBean.location.active}"/>
+					<h:outputLabel value="Date of Birth" />
+					<p:calendar value="#{adminBean.member.dateOfBirth}"
+						pattern="dd/MM/yyyy" styleClass="pfDate" />
 
-		</h:panelGrid>
+					<h:outputLabel value="Gender" />
+					<h:inputText value="#{adminBean.member.gender}" />
+
+					<h:outputLabel value="First Aid" />
+					<h:selectBooleanCheckbox value="#{adminBean.member.firstAid}" />
+
+					<h:outputLabel value="Emergency Contact" />
+					<h:inputText value="#{adminBean.member.emergencyContact}" />
+
+					<h:outputLabel value="Em Cont Ph 1"
+						title="Emergency Contact Phone 1" />
+					<h:inputText value="#{adminBean.member.phoneEmergencyContact}"
+						title="Emergency Contact Phone 1" />
+
+					<h:outputLabel value="Em Cont Ph 2"
+						title="Emergency Contact Phone 2" />
+					<h:inputText value="#{adminBean.member.phoneEmergencyContact2}"
+						title="Emergency Contact Phone 2" />
+
+					<h:outputLabel value="Is Director" />
+					<h:selectBooleanCheckbox value="#{adminBean.member.raceDirector}" />
+
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.location.active}" />
+
+				</h:panelGrid>
+			</ui:define>
+
+		</ui:decorate>
 
 	</ui:decorate>
 

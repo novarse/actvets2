@@ -8,21 +8,35 @@
 		<ui:param name="sectionTitle" value="Season" />
 		<ui:param name="blockId" value="eventSeason" />
 
-		<h:panelGrid columns="2" columnClasses="width90">
-			<h:outputLabel value="Season" />
-			<h:inputText value="#{adminBean.season.title}" />
+		<ui:decorate
+			template="../WEB-INF/templates/adminEditSectionTemplate.xhtml">
 
-			<h:outputLabel value="List Order"
-				title="This deterimines the order of the seasons shown in drop-down lists" />
-			<h:selectOneMenu value="#{adminBean.season.listOrder}"
-				title="This deterimines the order of the seasons shown in drop-down lists">
-				<f:selectItems value="#{adminBean.seasonOrder}"/>
-			</h:selectOneMenu>
+			<ui:define name="editSection">
 
-			<h:outputLabel value="Is Active"/>
-			<h:selectBooleanCheckbox value="#{adminBean.season.active}"/>
-	
-		</h:panelGrid>
+
+			</ui:define>
+
+			<ui:define name="newSection">
+
+				<h:panelGrid columns="2" columnClasses="width100">
+
+					<h:outputLabel value="Season" />
+					<h:inputText value="#{adminBean.season.title}" />
+
+					<h:outputLabel value="List Order"
+						title="This deterimines the order of the seasons shown in drop-down lists" />
+					<h:selectOneMenu value="#{adminBean.season.listOrder}"
+						title="This deterimines the order of the seasons shown in drop-down lists">
+						<f:selectItems value="#{adminBean.seasonOrder}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.season.active}" />
+
+				</h:panelGrid>
+			</ui:define>
+
+		</ui:decorate>
 
 	</ui:decorate>
 

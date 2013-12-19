@@ -7,29 +7,45 @@
 		<ui:param name="sectionTitle" value="Location" />
 		<ui:param name="blockId" value="eventLocation" />
 
-		<h:panelGrid columns="2" columnClasses="width90">
-			<h:outputLabel value="Location"/>
-			<h:inputText value="#{adminBean.location.title}" />
+		<ui:decorate
+			template="../WEB-INF/templates/adminEditSectionTemplate.xhtml">
 
-			<h:outputLabel value="State"/>
-			<h:selectOneMenu value="#{adminBean.location.state}">
-				<f:selectItem itemLabel="-Select a state-" noSelectionOption="true"/>
-				<f:selectItems value="#{auStateList.states}"/>
-			</h:selectOneMenu>
+			<ui:define name="editSection">
 
-			<h:outputLabel value="Directions"/>
-			<h:inputTextarea value="#{adminBean.location.directions}" cols="60" rows="5"/>
-			
-			<h:outputLabel value="Latitude"/>
-			<h:inputText value="#{adminBean.location.latitude}"/>
-			
-			<h:outputLabel value="Longitude"/>
-			<h:inputText value="#{adminBean.location.longitude}"/>
-			
-			<h:outputLabel value="Is Active"/>
-			<h:selectBooleanCheckbox value="#{adminBean.location.active}"/>
 
-		</h:panelGrid>
+			</ui:define>
+
+			<ui:define name="newSection">
+
+				<h:panelGrid columns="2" columnClasses="width100">
+
+					<h:outputLabel value="Location" />
+					<h:inputText value="#{adminBean.location.title}" />
+
+					<h:outputLabel value="State" />
+					<h:selectOneMenu value="#{adminBean.location.state}">
+						<f:selectItem itemLabel="-Select a state-"
+							noSelectionOption="true" />
+						<f:selectItems value="#{auStateList.states}" />
+					</h:selectOneMenu>
+
+					<h:outputLabel value="Directions" />
+					<h:inputTextarea value="#{adminBean.location.directions}" cols="60"
+						rows="5" />
+
+					<h:outputLabel value="Latitude" />
+					<h:inputText value="#{adminBean.location.latitude}" />
+
+					<h:outputLabel value="Longitude" />
+					<h:inputText value="#{adminBean.location.longitude}" />
+
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.location.active}" />
+
+				</h:panelGrid>
+			</ui:define>
+
+		</ui:decorate>
 
 	</ui:decorate>
 

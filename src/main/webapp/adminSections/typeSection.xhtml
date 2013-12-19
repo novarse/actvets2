@@ -7,14 +7,28 @@
 		<ui:param name="sectionTitle" value="Event Type" />
 		<ui:param name="blockId" value="eventType" />
 
-		<h:panelGrid columns="2" columnClasses="width90">
-			<h:outputLabel value="Event Type"/>
-			<h:inputText value="#{adminBean.eventType.title}" />
+		<ui:decorate
+			template="../WEB-INF/templates/adminEditSectionTemplate.xhtml">
 
-			<h:outputLabel value="Is Active"/>
-			<h:selectBooleanCheckbox value="#{adminBean.eventType.active}"/>
+			<ui:define name="editSection">
 
-		</h:panelGrid>
+
+			</ui:define>
+
+			<ui:define name="newSection">
+
+				<h:panelGrid columns="2" columnClasses="width100">
+
+					<h:outputLabel value="Event Type" />
+					<h:inputText value="#{adminBean.eventType.title}" />
+
+					<h:outputLabel value="Is Active" />
+					<h:selectBooleanCheckbox value="#{adminBean.eventType.active}" />
+
+				</h:panelGrid>
+			</ui:define>
+
+		</ui:decorate>
 
 	</ui:decorate>
 
